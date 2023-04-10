@@ -45,7 +45,7 @@ export default function Navbar() {
 
     return(
         <>
-            <header className={`flex flex-col gap-2 justify-center h-20 lg:h-24 2xl:h-28 px-3 sm:px-10 border-b ${darkMode ? 'border-neutral-900' : 'border-zinc-200'} sm:border-none transition-colors lazy-load-1`}>
+            <header className={`flex flex-col gap-2 justify-center h-20 lg:h-24 2xl:h-28 px-3 sm:px-10 border-b ${darkMode ? 'border-neutral-900' : 'border-zinc-200'} sm:border-none transition-colors`}>
                 <nav className="flex flex-row gap-0 items-center justify-between w-full">
                     <div className={`${showProjectQuote ? 'invisible' : 'visible'} transition-colors`}>
                         <Link href={"/"}>
