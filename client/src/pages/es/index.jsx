@@ -24,7 +24,7 @@ export default function ESPHome() {
 		<Layout title="Home">
 			<div className="flex items-center justify-center sm:justify-start max-w-6xl 2xl:max-w-[90rem] mx-auto pb-16 px-6 md:px-10 min-h-[65rem] lg:min-h-[40rem]" style={{height: 'calc(100vh - 5rem)'}} id="index_section_home">
 				<div className="flex flex-col lg:flex-row items-center gap-10 w-full lazy-load-1">
-					<div className="flex flex-col items-center sm:items-start gap-12">
+					<div className="flex flex-col items-center gap-12">
 						<div className="flex items-center">
 							<div className="flex flex-col gap-5">
 								<h1 className={`flex flex-col gap-3 items-center sm:items-start sm:gap-5 text-center sm:text-left text-3xl sm:text-4xl md:text-5xl 2xl:text-6xl uppercase font-extrabold max-w-3xl ${darkMode ? 'text-dark-main' : 'text-light-main'} transition-colors`}>
@@ -62,7 +62,7 @@ export default function ESPHome() {
 			</div>
 			<div className={`lazy-load-2`} id="index_section_consult">
 				<div className="flex flex-col gap-20 justify-center max-w-6xl 2xl:max-w-[90rem] mx-auto px-6 md:px-10 lg:px-20 py-20">
-					<div className={`flex flex-col sm:flex-row justify-center sm:items-center gap-2 text-3xl sm:text-4xl md:text-5xl 2xl:text-6xl font-bold uppercase w-fit`}>
+					<div className={`flex flex-col sm:flex-row justify-center sm:items-center gap-2 text-3xl sm:text-4xl md:text-5xl 2xl:text-6xl font-bold uppercase`}>
 						<div className={`${darkMode ? 'text-dark-main' : 'text-light-main'} w-fit`}>Lo que</div>
 						<div className={`${darkMode ? 'text-dark-text bg-dark-main' : 'text-white bg-light-main'} w-fit px-3 py-1 rounded-lg`}>podemos hacer</div>
 					</div>
@@ -105,7 +105,7 @@ export default function ESPHome() {
 			</div> */}
 			<div className={`${darkMode ? 'text-dark-text' : 'text-black'} flex flex-col justify-center gap-20 max-w-6xl 2xl:max-w-[90rem] mx-auto px-6 md:px-10 lg:px-20 lazy-load-3 py-20`} id="index_section_ourjobs">
 				{/* <div className="font-extrabold text-5xl uppercase text-light-main">Algo de lo que hemos hecho</div> */}
-				<div className="flex flex-col sm:flex-row sm:items-center gap-4 text-3xl sm:text-4xl md:text-5xl 2x:text-6xl font-extrabold uppercase">
+				<div className="flex flex-col sm:flex-row justify-center sm:items-center gap-4 text-3xl sm:text-4xl md:text-5xl 2x:text-6xl font-extrabold uppercase">
 					<div className={`${darkMode ? 'text-dark-main' : 'text-light-main'}`}>Nuestros</div>
 					<div className={`${darkMode ? 'bg-dark-main text-dark-text' : 'bg-light-main text-white'} px-2 py-1 sm:px-3 sm:py-2 rounded-lg w-fit`}>
 						<span>Trabajos</span>
@@ -138,13 +138,13 @@ export default function ESPHome() {
 			<div className="flex items-center max-w-6xl 2xl:max-w-[90rem] mx-auto px-6 md:px-10 lg:px-20 h-screen min-h-[45rem] lazy-load-4 py-20" id="index_section_technologies">
 				<div className="flex flex-col gap-20 overflow-hidden">
 					<div className="flex flex-col gap-5">
-						<div className="flex flex-col sm:flex-row sm:items-center gap-4 text-3xl sm:text-4xl md:text-5xl 2x:text-6xl font-extrabold uppercase">
+						<div className="flex flex-col sm:flex-row justify-center sm:items-center gap-4 text-3xl sm:text-4xl md:text-5xl 2x:text-6xl font-extrabold uppercase">
 							<div className={`${darkMode ? 'text-dark-main' : 'text-light-main'}`}>Principales</div>
 							<div className={`${darkMode ? 'bg-dark-main text-dark-text' : 'bg-light-main text-white'} px-2 py-1 sm:px-3 sm:py-2 rounded-lg w-fit`}>
 								<span>Tecnologías</span>
 							</div>
 						</div>
-						<div className={`text-lg ${darkMode ? 'text-dark-text' : 'text-light-description'} 2xl:text-xl`}>
+						<div className={`text-lg ${darkMode ? 'text-dark-text' : 'text-light-description'} 2xl:text-xl sm:text-center`}>
 							<p>La tecnología adecuada enriquece el proyecto.<br/> Estas son algunas de las que más usamos:</p>
 						</div>
 					</div>

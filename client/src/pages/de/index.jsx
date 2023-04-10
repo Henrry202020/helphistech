@@ -63,7 +63,7 @@ export default function DEHome() {
 			</div>
 			<div className={`lazy-load-2`} id="index_section_consult">
 				<div className="flex flex-col gap-20 justify-center max-w-6xl 2xl:max-w-[90rem] mx-auto px-6 md:px-10 lg:px-20 py-20">
-					<div className={`flex flex-col sm:flex-row justify-center sm:items-center gap-2 text-3xl sm:text-4xl md:text-5xl 2xl:text-6xl font-bold uppercase w-fit`}>
+					<div className={`flex flex-col sm:flex-row justify-center sm:items-center gap-2 text-3xl sm:text-4xl md:text-5xl 2xl:text-6xl font-bold uppercase`}>
 						<div className={`${darkMode ? 'text-dark-main' : 'text-light-main'}`}>Was wir</div>
 						<div className={`${darkMode ? 'text-dark-text bg-dark-main' : 'text-white bg-light-main'} w-fit px-3 py-1 rounded-lg`}>tun können</div>
 					</div>
@@ -106,7 +106,7 @@ export default function DEHome() {
 			</div> */}
 			<div className={`${darkMode ? 'text-dark-text' : 'text-black'} flex flex-col justify-center gap-20 max-w-6xl 2xl:max-w-[90rem] mx-auto px-6 md:px-10 lg:px-20 lazy-load-3 py-20`} id="index_section_ourjobs">
 				{/* <div className="font-extrabold text-5xl uppercase text-light-main">Algo de lo que hemos hecho</div> */}
-				<div className="flex flex-col sm:flex-row sm:items-center gap-4 text-3xl sm:text-4xl md:text-5xl 2x:text-6xl font-extrabold uppercase">
+				<div className="flex flex-col sm:flex-row justify-center sm:items-center gap-4 text-3xl sm:text-4xl md:text-5xl 2x:text-6xl font-extrabold uppercase">
 					<div className={`${darkMode ? 'text-dark-main' : 'text-light-main'}`}>Unsere</div>
 					<div className={`${darkMode ? 'bg-dark-main text-dark-text' : 'bg-light-main text-white'} px-2 py-1 sm:px-3 sm:py-2 rounded-lg w-fit`}>
 						<span>Arbeitsplätze</span>
@@ -139,13 +139,13 @@ export default function DEHome() {
 			<div className="flex items-center max-w-6xl 2xl:max-w-[90rem] mx-auto px-6 md:px-10 lg:px-20 h-screen min-h-[45rem] lazy-load-4 py-20" id="index_section_technologies">
 				<div className="flex flex-col gap-20 overflow-hidden">
 					<div className="flex flex-col gap-5">
-						<div className="flex flex-col sm:flex-row sm:items-center gap-4 text-3xl sm:text-4xl md:text-5xl 2x:text-6xl font-extrabold uppercase">
+						<div className="flex flex-col sm:flex-row justify-center sm:items-center gap-4 text-3xl sm:text-4xl md:text-5xl 2x:text-6xl font-extrabold uppercase">
 							<div className={`${darkMode ? 'text-dark-main' : 'text-light-main'}`}>kern</div>
 							<div className={`${darkMode ? 'bg-dark-main text-dark-text' : 'bg-light-main text-white'} px-2 py-1 sm:px-3 sm:py-2 rounded-lg w-fit`}>
 								<span>technologien</span>
 							</div>
 						</div>
-						<div className={`text-lg ${darkMode ? 'text-dark-text' : 'text-light-description'} 2xl:text-xl`}>
+						<div className={`text-lg ${darkMode ? 'text-dark-text' : 'text-light-description'} 2xl:text-xl sm:text-center`}>
 							<p>
 								Die passende Technologie bereichert das Projekt.
 								<br/>

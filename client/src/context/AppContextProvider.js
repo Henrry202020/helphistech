@@ -1,17 +1,24 @@
 import axios from "axios";
+// React
 import { createContext, useEffect, useState } from "react";
+// Nextjs
+import { useRouter } from "next/router";
 
 const AppContext = createContext();
 
 const AppContextProvider = ({children}) => {
     
+    const router = useRouter();
+
     // Language and dark mode settings
     const [ language, setLanguage ] = useState('de');
     const [ darkMode, setDarkMode ] = useState(false);
     // On component load load:
     useEffect(() => {
         // Use saved localStorage language or 'de'(german)
-        setLanguage(localStorage.getItem('language') || 'de');
+        const urlLanguage = router.pathname.split('/')[1];
+        const localStorageLanguage = localStorage.getItem('language') || 'de';
+        setLanguage(urlLanguage != localStorageLanguage ? urlLanguage : localStorageLanguage);
         // Use saved localStorage theme or 'light'(lightmode)
         setDarkMode(JSON.parse(localStorage.getItem('darkmode')) || false);
     }, []);
