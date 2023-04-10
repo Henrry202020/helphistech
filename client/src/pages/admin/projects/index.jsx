@@ -40,7 +40,12 @@ export default function Projects() {
         }
 
         const { data } = await axios.post(`/api/admin/getProjects`, { config });
-        setProjects(data);
+        const sortedByDate = data.sort(function(a,b){
+            // Turn your strings into dates, and then subtract them
+            // to get a value that is either negative, positive, or zero.
+            return new Date(b.createdAt) - new Date(a.createdAt);
+        });
+        setProjects(sortedByDate);
     }
 
     const [ projectsFilter, setProjectFilter ] = useState('all');
@@ -115,7 +120,7 @@ function Project({ project }) {
                 </div>
                 <div className="flex flex-col">
                     <div className="font-bold uppercase">Descripción</div>
-                    <div className={`${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>{description}</div>    
+                    <div className={`${darkMode ? 'text-zinc-400' : 'text-zinc-600'} project-description`}>{description}</div>    
                 </div>
                 <div className="flex flex-col">
                     <div className="font-bold uppercase">Presupuesto</div>
