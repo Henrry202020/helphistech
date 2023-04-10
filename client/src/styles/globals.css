@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap');
+/* font-family: 'Outfit', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
+/* font-family: 'Open Sans', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+/* font-family: 'Poppins', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900;1000&display=swap');
+/* font-family: 'Nunito', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
+/* font-family: 'Source Sans Pro', sans-serif; */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+	font-family: 'Outfit', sans-serif;
+}
+
+img {
+	-webkit-user-drag: none;
+	-khtml-user-drag: none;
+	-moz-user-drag: none;
+	-o-user-drag: none;
+	user-drag: none;
+}
+
+/* Scrollbar width */
+::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+}
+  
+/* Scrollbar Track */
+::-webkit-scrollbar-track {
+	background: transparent;
+}
+  
+/* Scrollbar Handle */
+::-webkit-scrollbar-thumb {
+	background: rgb(99 102 241);
+}
+
+/* Text selection */
+::-moz-selection { /* Code for Firefox */
+	color: white;
+	background: rgb(99 102 241);
+}
+  
+::selection {
+	color: white;
+	background: rgb(99 102 241);
+}
+
+/* Remove autofull background on inputs */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+.text-gradient {
+	background: -webkit-linear-gradient(rgb(99, 165, 241), rgb(99 102 241));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.bg-gradient {
+	background: linear-gradient(45deg, rgb(76 78 149) 0%, rgb(120, 122, 255) 100%);
+}
+
+.text-color-animation {
+	animation: color-change 10s infinite;
+}
+
+@keyframes color-change {
+	0% {
+		color: rgb(99 102 241);
+	}
+
+	50% {
+		color: rgb(99, 137, 241);
+	}
+
+	100% {
+		color: rgb(99 102 241);
+	}
+}
+
+.modal-open {
+	animation-name: modal-open;
+	animation-duration: .2s;
+	animation-timing-function: ease-in-out;
+}
+
+@keyframes modal-open {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+.modal-close {
+	animation-name: modal-close;
+	animation-duration: .2s;
+	animation-timing-function: ease-in-out;
+}
+
+@keyframes modal-close {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+
+.full-screen-menu-open {
+	animation-name: quote-project-open;
+	animation-duration: .3s;
+	animation-timing-function: ease-in-out;
+}
+
+@keyframes quote-project-open {
+	from {
+		opacity: .5;
+		right: -100vw;
+		transform: translateY(-100vh);
+	}
+	to {
+		right: 0;
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.full-screen-menu-close {
+	animation-name: quote-project-close;
+	animation-duration: .3s;
+	animation-timing-function: ease-in-out;
+}
+
+@keyframes quote-project-close {
+	from {
+		right: 0;
+		opacity: 1;
+		transform: translateY(0);
+	}
+	to {
+		opacity: 0;
+		right: -100vw;
+		transform: translateY(-100vh);
+	}
+}
+
+.lazy-load-1 {
+	animation-name: lazy-load-1;
+	animation-duration: .7s;
+	animation-timing-function: ease-in-out;
+}
+
+@keyframes lazy-load-1 {
+	0% {
+		display: none;
+		opacity: 0;
+		transform: translateY(5rem);
+	}
+	70% {
+		display: block;
+		opacity: 0;
+		transform: translateY(5rem);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.lazy-load-2 {
+	animation-name: lazy-load-2;
+	animation-duration: .9s;
+	animation-timing-function: ease-in-out;
+}
+
+@keyframes lazy-load-2 {
+	0% {
+		display: none;
+		opacity: 0;
+		transform: translateY(5rem);
+	}
+	70% {
+		display: block;
+		opacity: 0;
+		transform: translateY(5rem);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.lazy-load-3 {
+	animation-name: lazy-load-3;
+	animation-duration: 1.1s;
+	animation-timing-function: ease-in-out;
+}
+
+@keyframes lazy-load-3 {
+	0% {
+		display: none;
+		opacity: 0;
+		transform: translateY(5rem);
+	}
+	70% {
+		display: block;
+		opacity: 0;
+		transform: translateY(5rem);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.lazy-load-4 {
+	animation-name: lazy-load-4;
+	animation-duration: 1.3s;
+	animation-timing-function: ease-in-out;
+}
+
+@keyframes lazy-load-4 {
+	0% {
+		display: none;
+		opacity: 0;
+		transform: translateY(5rem);
+	}
+	70% {
+		display: block;
+		opacity: 0;
+		transform: translateY(5rem);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.login-card {
+	width: calc(100vw - 5rem);
+	height: calc(100vh - 5rem);
+}
+
+@media (max-width: 640px) {
+	.login-card {
+		width: calc(100vw);
+		height: calc(100vh);
+	}	
+}
