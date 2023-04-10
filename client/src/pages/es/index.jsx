@@ -53,7 +53,7 @@ export default function ESPHome() {
 					</div>
 					<div className="flex flex-col gap-3 w-full">
 						<Youtube videoId="lhfU7j50bWk" className="" iframeClassName="w-full rounded-xl" />
-						<Link className="flex justify-center items-center gap-2 hover:text-light-main" href={"https://www.youtube.com/watch?v=lhfU7j50bWk"} target="_blank">
+						<Link className={`flex justify-center items-center gap-2 ${darkMode ? 'text-dark-text hover:text-light-main' : 'text-black hover:text-dark-main'} transition-colors`} href={"https://www.youtube.com/watch?v=lhfU7j50bWk"} target="_blank">
 							<span>Ver en YouTube</span> 
 							<i className="fa-regular fa-arrow-up-right-from-square"></i>
 						</Link>
@@ -135,7 +135,7 @@ export default function ESPHome() {
 					/>
 				</div>
 			</div>
-			<div className="flex items-center max-w-6xl 2xl:max-w-[90rem] mx-auto px-6 md:px-10 lg:px-20 h-screen min-h-[45rem] lazy-load-4 py-20" id="index_section_technologies">
+			<div className="flex items-center max-w-6xl 2xl:max-w-[90rem] mx-auto px-6 md:px-10 lg:px-20 min-h-[45rem] sm:min-h-[42rem] 2xl:min-h-[47rem] lazy-load-4 py-20" id="index_section_technologies">
 				<div className="flex flex-col gap-20 overflow-hidden">
 					<div className="flex flex-col gap-5">
 						<div className="flex flex-col sm:flex-row justify-center items-center gap-4 text-3xl sm:text-4xl md:text-5xl 2x:text-6xl font-extrabold uppercase">

@@ -45,6 +45,7 @@ export default function LoginForm() {
             localStorage.setItem('auth-token', data.token);
             // Throw message on success
             setMessage({ error: false, text: 'Sie haben sich erfolgreich angemeldet' });
+            window.location.href = '/admin';
             setTimeout(() => {
                 setMessage({ error: false, text: '' });
             }, 3000);

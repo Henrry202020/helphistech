@@ -45,6 +45,7 @@ export default function LoginForm() {
             localStorage.setItem('auth-token', data.token);
             // Throw message on success
             setMessage({ error: false, text: 'Has iniciado sesión' });
+            window.location.href = '/admin';
             setTimeout(() => {
                 setMessage({ error: false, text: '' });
             }, 3000);
