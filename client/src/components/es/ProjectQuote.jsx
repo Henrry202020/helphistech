@@ -34,6 +34,9 @@ import * as Yup from 'yup';
 
 function FormComponent() {
 
+    // Form steps
+    const [ step, setStep ] = useState(1);
+
     // On user submit form show a message
     const [ message, setMessage ] = useState({ error: false, text: '' });
 
@@ -50,14 +53,43 @@ function FormComponent() {
     // Get functions and variables from context
     const { projectQuoteAnimation } = useContextProvider();
 
-    // Project type
+    /* Project form values */
+    // 1ST FORM - Project type
     const [ type, setType ] = useState('');
-
     // Estimated budget
     const [ budget, setBudget ] = useState({});
-
     // Tell us more
     const description = useRef('');
+
+    // 2ND FORM - What is the full name of the company or client?
+    const company_fullname = useRef('');
+    // What type of business does the client have?
+    const business_type = useRef('');
+    // What is the company's vision and mission?
+    const company_vision = useRef('');
+    // Who is the target audience for the company?
+    const target_audience = useRef('');
+    // What services or products does the company offer?
+    const service_or_product = useRef('');
+    // What is the expected delivery timeline?
+    const expected_deilvertime = useRef('');
+    
+    // 3RD FORM -  What functionalities should the web have?
+    const functionalities = useRef('');
+    // Should the web be responsive or have a specific design?
+    const web_design_type = useRef('');
+    // Are e-commerce functionalities needed on the web?
+    const ecommerce_funtionabilites = useRef('');
+    // Does the client have any content (text, images, videos) to include on the web?
+    const conten_to_include = useRef('');
+    // What programming language and technologies are preferred for development?
+    const preferred_technologies = useRef('');
+    // Who will be responsible for managing the web once the project is completed?
+    const responsible_for_managing = useRef('');
+    // What is the client's marketing and positioning strategy?
+    const marketing_strategy = useRef('');
+    // Are there competitor websites that should be taken into account as references?
+    const competitor_websites = useRef('');
 
     // Reset form fields on submit
     function resetForm() {
@@ -239,4 +271,10 @@ function Input({ props }) {
             )}
         </div>
     )
+}
+
+function FromStep({ children }) {
+    return <div>
+        {children}
+    </div>
 }

@@ -34,15 +34,18 @@ import * as Yup from 'yup';
 
 function FormComponent() {
 
+    // Form steps
+    const [ step, setStep ] = useState(1);
+
     // On user submit form show a message
     const [ message, setMessage ] = useState({ error: false, text: '' });
 
     const ProjectQuoteSchema = Yup.object().shape({
         fullName: Yup.string()
-          .min(5, 'sehr kurzer name')
-          .max(50, 'sehr langer name')
-          .required('Name ist erforderlich'),
-        email: Yup.string().email('ungültige E-Mail').required('E-Mail ist erforderlich')
+          .min(5, 'Nombre muy corto')
+          .max(50, 'Nombre muy largo')
+          .required('El nombre es obligatorio'),
+        email: Yup.string().email('Correo electrónico no válido').required('El email es obligatorio')
     });
 
     const router = useRouter();
@@ -50,14 +53,43 @@ function FormComponent() {
     // Get functions and variables from context
     const { projectQuoteAnimation } = useContextProvider();
 
-    // Project type
+    /* Project form values */
+    // 1ST FORM - Project type
     const [ type, setType ] = useState('');
-
     // Estimated budget
     const [ budget, setBudget ] = useState({});
-
     // Tell us more
     const description = useRef('');
+
+    // 2ND FORM - What is the full name of the company or client?
+    const company_fullname = useRef('');
+    // What type of business does the client have?
+    const business_type = useRef('');
+    // What is the company's vision and mission?
+    const company_vision = useRef('');
+    // Who is the target audience for the company?
+    const target_audience = useRef('');
+    // What services or products does the company offer?
+    const service_or_product = useRef('');
+    // What is the expected delivery timeline?
+    const expected_deilvertime = useRef('');
+    
+    // 3RD FORM -  What functionalities should the web have?
+    const functionalities = useRef('');
+    // Should the web be responsive or have a specific design?
+    const web_design_type = useRef('');
+    // Are e-commerce functionalities needed on the web?
+    const ecommerce_funtionabilites = useRef('');
+    // Does the client have any content (text, images, videos) to include on the web?
+    const conten_to_include = useRef('');
+    // What programming language and technologies are preferred for development?
+    const preferred_technologies = useRef('');
+    // Who will be responsible for managing the web once the project is completed?
+    const responsible_for_managing = useRef('');
+    // What is the client's marketing and positioning strategy?
+    const marketing_strategy = useRef('');
+    // Are there competitor websites that should be taken into account as references?
+    const competitor_websites = useRef('');
 
     // Reset form fields on submit
     function resetForm() {
@@ -125,85 +157,87 @@ function FormComponent() {
                     { message.text && (
                         <div className={`${message.error ? 'bg-red-500' : 'bg-light-main'} py-2 w-full text-white uppercase font-semibold text-center rounded-md`}>{message.text}</div>
                     )}
-                    <Section 
-                        title={"Welche Art von Projekt?"} 
-                        classes={`${!projectQuoteAnimation ? 'lazy-load-1 block' : 'hidden'}`}
-                    >
-                        <div className="grid grid-cols-2 sm:grid-cols-3 items-center gap-2">
-                            <div onClick={() => setType('website')} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${type === 'website' && 'bg-white text-black'}`}>
-                                <span>Webseite</span>
+                    <section id="step1">
+                        <Section 
+                            title={"Welche Art von Projekt?"} 
+                            classes={`${!projectQuoteAnimation ? 'lazy-load-1 block' : 'hidden'}`}
+                        >
+                            <div className="grid grid-cols-2 sm:grid-cols-3 items-center gap-2">
+                                <div onClick={() => setType('website')} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${type === 'website' && 'bg-white text-black'}`}>
+                                    <span>Webseite</span>
+                                </div>
+                                <div onClick={() => setType('ecommerce')} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${type === 'ecommerce' && 'bg-white text-black'}`}>
+                                    <span>E-Commerce</span>
+                                </div>
+                                <div onClick={() => setType('app')} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${type === 'app' && 'bg-white text-black'}`}>
+                                    <span>Anwendungen</span>
+                                </div>
                             </div>
-                            <div onClick={() => setType('ecommerce')} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${type === 'ecommerce' && 'bg-white text-black'}`}>
-                                <span>E-Commerce</span>
+                        </Section>
+                        <Section 
+                            title={"Kontaktinformationen"}  
+                            classes={`${!projectQuoteAnimation ? 'lazy-load-2 block' : 'hidden'}`}
+                        >
+                            <div className="flex flex-col gap-2">
+                                <div className="flex items-center border-b border-neutral-400">
+                                    <Field 
+                                        className="bg-transparent outline-none py-2 w-full placeholder:text-neutral-400 text-lg"
+                                        name="fullName" 
+                                        type="text"
+                                        placeholder="Vollständiger Name"
+                                    />
+                                </div>
+                                {errors.fullName && touched.fullName ? (
+                                    <div className="text-sm text-red-500">{errors.fullName}</div>
+                                ) : null}
+                                <div className="flex items-center border-b border-neutral-400">
+                                    <Field 
+                                        className="bg-transparent outline-none py-2 w-full placeholder:text-neutral-400 text-lg"
+                                        name="email" 
+                                        type="email"
+                                        placeholder="Email"
+                                    />
+                                </div>
+                                {errors.email && touched.email ? (
+                                    <div className="text-sm text-red-500">{errors.email}</div>
+                                ) : null}
                             </div>
-                            <div onClick={() => setType('app')} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${type === 'app' && 'bg-white text-black'}`}>
-                                <span>Anwendungen</span>
+                        </Section>
+                        <Section 
+                            title={"Erzählen Sie uns mehr über das Projekt"} 
+                            classes={`${!projectQuoteAnimation ? 'lazy-load-4 block' : 'hidden'}`}
+                        >
+                            <Input props={{
+                                placeholder: 'Beschreibung', 
+                                ref: description, 
+                                type: 'text', 
+                                required: false
+                            }} />
+                        </Section>
+                        <Section 
+                            title={"Wie hoch ist Ihr geschätztes Budget für das Projekt?"} 
+                            subtitle={"Budget in USD ausgedrückt"}  
+                            classes={`${!projectQuoteAnimation ? 'lazy-load-3 block' : 'hidden'}`}
+                        >
+                            <div className="grid grid-cols-2 sm:grid-cols-4 xl:grid-cols-5 items-center gap-2">
+                                <div onClick={() => setBudget({ from: 1, to: 5000 })} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${budget.from === 1 && 'bg-white text-black'}`}>
+                                    <span>{'< 5K'}</span>
+                                </div>
+                                <div onClick={() => setBudget({ from: 5000, to: 10000 })} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${budget.from === 5000 && 'bg-white text-black'}`}>
+                                    <span>{'5K - 10K'}</span>
+                                </div>
+                                <div onClick={() => setBudget({ from: 10000, to: 20000 })} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${budget.from === 10000 && 'bg-white text-black'}`}>
+                                    <span>{'10K - 20K'}</span>
+                                </div>
+                                <div onClick={() => setBudget({ from: 20000, to: 30000 })} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${budget.from === 20000 && 'bg-white text-black'}`}>
+                                    <span>{'20K - 30K'}</span>
+                                </div>
+                                <div onClick={() => setBudget({ from: 30000, to: 100000 })} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${budget.from === 30000 && 'bg-white text-black'}`}>
+                                    <span>{'> 30K'}</span>
+                                </div>
                             </div>
-                        </div>
-                    </Section>
-                    <Section 
-                        title={"Kontaktinformationen"}  
-                        classes={`${!projectQuoteAnimation ? 'lazy-load-2 block' : 'hidden'}`}
-                    >
-                        <div className="flex flex-col gap-2">
-                            <div className="flex items-center border-b border-neutral-400">
-                                <Field 
-                                    className="bg-transparent outline-none py-2 w-full placeholder:text-neutral-400 text-lg"
-                                    name="fullName" 
-                                    type="text"
-                                    placeholder="Vollständiger Name"
-                                />
-                            </div>
-                            {errors.fullName && touched.fullName ? (
-                                <div className="text-sm text-red-500">{errors.fullName}</div>
-                            ) : null}
-                            <div className="flex items-center border-b border-neutral-400">
-                                <Field 
-                                    className="bg-transparent outline-none py-2 w-full placeholder:text-neutral-400 text-lg"
-                                    name="email" 
-                                    type="email"
-                                    placeholder="Email"
-                                />
-                            </div>
-                            {errors.email && touched.email ? (
-                                <div className="text-sm text-red-500">{errors.email}</div>
-                            ) : null}
-                        </div>
-                    </Section>
-                    <Section 
-                        title={"Erzählen Sie uns mehr über das Projekt"} 
-                        classes={`${!projectQuoteAnimation ? 'lazy-load-4 block' : 'hidden'}`}
-                    >
-                        <Input props={{
-                            placeholder: 'Beschreibung', 
-                            ref: description, 
-                            type: 'text', 
-                            required: false
-                        }} />
-                    </Section>
-                    <Section 
-                        title={"Wie hoch ist Ihr geschätztes Budget für das Projekt?"} 
-                        subtitle={"Budget in USD ausgedrückt"}  
-                        classes={`${!projectQuoteAnimation ? 'lazy-load-3 block' : 'hidden'}`}
-                    >
-                        <div className="grid grid-cols-2 sm:grid-cols-4 xl:grid-cols-5 items-center gap-2">
-                            <div onClick={() => setBudget({ from: 1, to: 5000 })} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${budget.from === 1 && 'bg-white text-black'}`}>
-                                <span>{'< 5K'}</span>
-                            </div>
-                            <div onClick={() => setBudget({ from: 5000, to: 10000 })} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${budget.from === 5000 && 'bg-white text-black'}`}>
-                                <span>{'5K - 10K'}</span>
-                            </div>
-                            <div onClick={() => setBudget({ from: 10000, to: 20000 })} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${budget.from === 10000 && 'bg-white text-black'}`}>
-                                <span>{'10K - 20K'}</span>
-                            </div>
-                            <div onClick={() => setBudget({ from: 20000, to: 30000 })} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${budget.from === 20000 && 'bg-white text-black'}`}>
-                                <span>{'20K - 30K'}</span>
-                            </div>
-                            <div onClick={() => setBudget({ from: 30000, to: 100000 })} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${budget.from === 30000 && 'bg-white text-black'}`}>
-                                <span>{'> 30K'}</span>
-                            </div>
-                        </div>
-                    </Section>
+                        </Section>
+                    </section>
                     <button className={`py-2 px-4 bg-gradient rounded-xl text-lg uppercase font-bold text-center cursor-pointer ${!projectQuoteAnimation ? 'lazy-load-4 block' : 'hidden'}`}>schicken</button>
                 </Form>
             )}
