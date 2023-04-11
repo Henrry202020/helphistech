@@ -31,7 +31,7 @@ export default function Footer() {
                                 onClick={() => handleScrollTo('index_section_startmyproject')}>Beginnen Sie mit meinem Projekt</div>
                         </div>
                     </FooterColumn>
-                    <FooterColumn title={"Redes sociales"}>
+                    <FooterColumn title={"Soziale Medien"}>
                         <div className="flex flex-col gap-2">
                             <Link className="flex items-center gap-2 hover:text-neutral-400" href={"https://linkedin.com"}>
                                 <div className="grid place-content-center w-4"><i className="fa-brands fa-linkedin-in"></i></div>
