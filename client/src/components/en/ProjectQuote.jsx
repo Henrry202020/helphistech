@@ -36,10 +36,16 @@ function FormComponent() {
 
     // Form steps
     const [ step, setStep ] = useState(1);
-    console.log(step)
-    function handleChangeStep() {
+
+    function handleNextStep() {
         if(step < 3) {
             setStep(current => current + 1);
+        }
+    }
+
+    function handlePrevStep() {
+        if(step > 1) {
+            setStep(current => current - 1);
         }
     }
 
@@ -65,10 +71,10 @@ function FormComponent() {
     // Estimated budget
     const [ budget, setBudget ] = useState({});
     // Tell us more
-    const description = useRef('');
+    const description = useRef(null);
 
     // 2ND FORM - What is the full name of the company or client?
-    const company_fullname = useRef('');
+    const company_fullname = useRef(null);
     // What type of business does the client have?
     const [ business_type, setBusinessType ] = useState('');
     // What is the company's vision and mission?
@@ -81,21 +87,30 @@ function FormComponent() {
     const [ expected_deilvertime, setExpectedDeliverTime ] = useState({ from: null, to: null });
     
     // 3RD FORM -  What functionalities should the web have?
-    const functionalities = useRef('');
+    const [ functionalities, setFunctionalities ] = useState([]);
+    const functionalities_other = useRef(null);
+    function handleFunctionabilites(value) {
+        if(functionalities.indexOf(value) > -1) {
+            const newFunctionabilites = functionalities.filter(f => f != value);
+            setFunctionalities(newFunctionabilites);
+        } else {
+            setFunctionalities(current => current.concat([value]));
+        }
+    }
     // Should the web be responsive or have a specific design?
-    const web_design_type = useRef('');
+    const [ web_design_type, setWebDesignType ] = useState('');
     // Are e-commerce functionalities needed on the web?
-    const ecommerce_funtionabilites = useRef('');
+    const [ ecommerce_funtionabilites, setEcommerceFunc ] = useState(false);
     // Does the client have any content (text, images, videos) to include on the web?
-    const conten_to_include = useRef('');
+    const [ content_to_include, setContentToInclude ] = useState(false);
     // What programming language and technologies are preferred for development?
-    const preferred_technologies = useRef('');
+    const [ preferred_technologies, setPreferredTechnologies ] = useState('');
     // Who will be responsible for managing the web once the project is completed?
-    const responsible_for_managing = useRef('');
+    const [ responsible_for_managing, setResponsibleForManaging ] = useState('');
     // What is the client's marketing and positioning strategy?
-    const marketing_strategy = useRef('');
+    const [ marketing_strategy, setMarketingStrategy ] = useState('');
     // Are there competitor websites that should be taken into account as references?
-    const competitor_websites = useRef('');
+    const [ competitor_websites, setCompetitorWebsites ] = useState(false);
 
     // Reset form fields on submit
     function resetForm() {
@@ -109,6 +124,10 @@ function FormComponent() {
         setTimeout(() => {
             setMessage({ error: false, text: '' })
         }, timeout)
+    }
+
+    function handleSubmit() {
+        // console.log('asd')
     }
 
     return (
@@ -140,6 +159,25 @@ function FormComponent() {
                         email: _email
                     },
                     description: _description,
+                    company_info: {
+                        full_name: company_fullname,
+                        business_type,
+                        company_vision,
+                        target_audience,
+                        service_or_product,
+                        expected_deilvertime
+                    },
+                    project_info: {
+                        functionalities,
+                        functionalities_other,
+                        web_design_type,
+                        ecommerce_funtionabilites,
+                        content_to_include,
+                        preferred_technologies,
+                        responsible_for_managing,
+                        marketing_strategy,
+                        competitor_websites
+                    },
                     budget
                 }
                 // Send project to server
@@ -159,7 +197,7 @@ function FormComponent() {
             }}
         >
             {({ errors, touched }) => (   
-                <Form className="flex flex-col gap-6">
+                <Form className="flex flex-col gap-6" onSubmit={handleSubmit}>
                     { message.text && (
                         <div className={`${message.error ? 'bg-red-500' : 'bg-light-main'} py-2 w-full text-white uppercase font-semibold text-center rounded-md`}>{message.text}</div>
                     )}
@@ -250,7 +288,7 @@ function FormComponent() {
                         >
                             <Input props={{
                                 placeholder: 'Full name', 
-                                ref: description, 
+                                ref: company_fullname, 
                                 type: 'text', 
                                 required: false
                             }} />
@@ -269,30 +307,27 @@ function FormComponent() {
                                     <span>Manufacturing</span>
                                 </div>
                             </div>
-                            <Input props={{
-                                placeholder: 'Other', 
-                                ref: description, 
-                                type: 'text', 
-                                required: false
-                            }} />
+                            <div className="flex items-center gap-2 border-b border-neutral-400">
+                                <input className="bg-transparent outline-none py-2 w-full placeholder:text-neutral-400 text-lg" type={'text'} placeholder={'Other'} onChange={(e) => setBusinessType(e.target.value)} />
+                            </div>
                         </Section>
                         <Section 
                             title={"What is the company's vision and mission?"} 
                         >
                             <div className="grid grid-cols-1 sm:grid-cols-2 items-center gap-2 pb-3">
-                                <div onClick={() => setCompanyVision('Products')} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${company_vision === 'Products' && 'bg-white text-black'}`}>
-                                    <span>Products</span>
+                                <div onClick={() => setCompanyVision('Increase profitability')} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${company_vision === 'Increase profitability' && 'bg-white text-black'}`}>
+                                    <span>Increase profitability</span>
                                 </div>
-                                <div onClick={() => setCompanyVision('Services')} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${company_vision === 'Services' && 'bg-white text-black'}`}>
-                                    <span>Services</span>
+                                <div onClick={() => setCompanyVision('Enhance customer satisfaction')} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${company_vision === 'Enhance customer satisfaction' && 'bg-white text-black'}`}>
+                                    <span>Enhance customer satisfaction</span>
+                                </div>
+                                <div onClick={() => setCompanyVision('Promote sustainability')} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${company_vision === 'Promote sustainability' && 'bg-white text-black'}`}>
+                                    <span>Promote sustainability</span>
                                 </div>
                             </div>
-                            <Input props={{
-                                placeholder: 'Other', 
-                                ref: description, 
-                                type: 'text', 
-                                required: false
-                            }} />
+                            <div className="flex items-center gap-2 border-b border-neutral-400">
+                                <input className="bg-transparent outline-none py-2 w-full placeholder:text-neutral-400 text-lg" type={'text'} placeholder={'Other'} onChange={(e) => setCompanyVision(e.target.value)} />
+                            </div>
                         </Section>
                         <Section 
                             title={"Who is the target audience for the company?"} 
@@ -314,12 +349,9 @@ function FormComponent() {
                                     <span>Seniors</span>
                                 </div>
                             </div>
-                            <Input props={{
-                                placeholder: 'Other', 
-                                ref: description, 
-                                type: 'text', 
-                                required: false
-                            }} />
+                            <div className="flex items-center gap-2 border-b border-neutral-400">
+                                <input className="bg-transparent outline-none py-2 w-full placeholder:text-neutral-400 text-lg" type={'text'} placeholder={'Other'} onChange={(e) => setTargetAudience(e.target.value)} />
+                            </div>
                         </Section>
                         <Section 
                             title={"What services or products does the company offer?"} 
@@ -332,12 +364,9 @@ function FormComponent() {
                                     <span>Services</span>
                                 </div>
                             </div>
-                            <Input props={{
-                                placeholder: 'Other', 
-                                ref: description, 
-                                type: 'text', 
-                                required: false
-                            }} />
+                            <div className="flex items-center gap-2 border-b border-neutral-400">
+                                <input className="bg-transparent outline-none py-2 w-full placeholder:text-neutral-400 text-lg" type={'text'} placeholder={'Other'} onChange={(e) => setServiceOrProduct(e.target.value)} />
+                            </div>
                         </Section>
                         <Section 
                             title={"What is the expected delivery timeline?"} 
@@ -356,18 +385,137 @@ function FormComponent() {
                                     <span>{"> 6 months"}</span>
                                 </div>
                             </div>
-                            <Input props={{
-                                placeholder: 'Other', 
-                                ref: description, 
-                                type: 'text', 
-                                required: false
-                            }} />
+                            <div className="flex items-center gap-2 border-b border-neutral-400">
+                                <input className="bg-transparent outline-none py-2 w-full placeholder:text-neutral-400 text-lg" type={'text'} placeholder={'Other'} onChange={(e) => setExpectedDeliverTime(e.target.value)} />
+                            </div>
                         </Section>
                     </section>
                     <section id="step3" className={`flex flex-col gap-6 ${step == 3 ? 'block' : 'hidden'}`}>
-
+                        <Section 
+                            title={"What functionalities should the web have?"} 
+                        >
+                            <div className="grid grid-cols-1 sm:grid-cols-2 items-center gap-2 pb-3">
+                                <div onClick={() => handleFunctionabilites("Contact form")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${functionalities.indexOf("Contact form") > -1 && 'bg-white text-black'}`}>
+                                    <span>Contact form</span>
+                                </div>
+                                <div onClick={() => handleFunctionabilites("Image gallery")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${functionalities.indexOf("Image gallery") > -1 && 'bg-white text-black'}`}>
+                                    <span>Image gallery</span>
+                                </div>
+                                <div onClick={() => handleFunctionabilites("Blog section")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${functionalities.indexOf("Blog section") > -1 && 'bg-white text-black'}`}>
+                                    <span>Blog section</span>
+                                </div>
+                                <div onClick={() => handleFunctionabilites("Social media integration")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${functionalities.indexOf("Social media integration") > -1 && 'bg-white text-black'}`}>
+                                    <span>Social media integration</span>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-2 border-b border-neutral-400">
+                                <input className="bg-transparent outline-none py-2 w-full placeholder:text-neutral-400 text-lg" type={'text'} placeholder={'Other'} onChange={(e) => setFunctionalities(e.target.value)} />
+                            </div>
+                        </Section>
+                        <Section 
+                            title={"Should the web be responsive or have a specific design?"} 
+                        >
+                            <div className="grid grid-cols-1 sm:grid-cols-2 items-center gap-2 pb-3">
+                                <div onClick={() => setWebDesignType("Responsive")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${web_design_type == 'Responsive' && 'bg-white text-black'}`}>
+                                    <span>Responsive</span>
+                                </div>
+                                <div onClick={() => setWebDesignType("Specific design")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${web_design_type == 'Specific design' && 'bg-white text-black'}`}>
+                                    <span>Specific design</span>
+                                </div>
+                            </div>
+                        </Section>
+                        <Section 
+                            title={"Are e-commerce functionalities needed on the web?"} 
+                        >
+                            <div className="grid grid-cols-1 sm:grid-cols-2 items-center gap-2 pb-3">
+                                <div onClick={() => setEcommerceFunc(true)} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${ecommerce_funtionabilites && 'bg-white text-black'}`}>
+                                    <span>Yes</span>
+                                </div>
+                                <div onClick={() => setEcommerceFunc(false)} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${!ecommerce_funtionabilites && 'bg-white text-black'}`}>
+                                    <span>No</span>
+                                </div>
+                            </div>
+                        </Section>
+                        <Section 
+                            title={"Does the client have any content (text, images, videos) to include on the web?"} 
+                        >
+                            <div className="grid grid-cols-1 sm:grid-cols-2 items-center gap-2 pb-3">
+                                <div onClick={() => setContentToInclude(true)} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${content_to_include && 'bg-white text-black'}`}>
+                                    <span>Yes</span>
+                                </div>
+                                <div onClick={() => setContentToInclude(false)} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${!content_to_include && 'bg-white text-black'}`}>
+                                    <span>No</span>
+                                </div>
+                            </div>
+                        </Section>
+                        <Section 
+                            title={"What programming language and technologies are preferred for development?"} 
+                        >
+                            <div className="grid grid-cols-1 sm:grid-cols-2 items-center gap-2 pb-3">
+                                <div onClick={() => setPreferredTechnologies("HTML/CSS/JavaScript")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${preferred_technologies == 'HTML/CSS/JavaScript' && 'bg-white text-black'}`}>
+                                    <span>HTML/CSS/JavaScript</span>
+                                </div>
+                                <div onClick={() => setPreferredTechnologies("PHP/MySQL")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${preferred_technologies == 'PHP/MySQL' && 'bg-white text-black'}`}>
+                                    <span>PHP/MySQL</span>
+                                </div>
+                                <div onClick={() => setPreferredTechnologies("Python/Django")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${preferred_technologies == 'Python/Django' && 'bg-white text-black'}`}>
+                                    <span>Python/Django</span>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-2 border-b border-neutral-400">
+                                <input className="bg-transparent outline-none py-2 w-full placeholder:text-neutral-400 text-lg" type={'text'} placeholder={'Other'} onChange={(e) => setPreferredTechnologies(e.target.value)} />
+                            </div>
+                        </Section>
+                        <Section 
+                            title={"Who will be responsible for managing the web once the project is completed?"} 
+                        >
+                            <div className="grid grid-cols-1 sm:grid-cols-2 items-center gap-2 pb-3">
+                                <div onClick={() => setResponsibleForManaging("The client")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${responsible_for_managing == 'The client' && 'bg-white text-black'}`}>
+                                    <span>The client</span>
+                                </div>
+                                <div onClick={() => setResponsibleForManaging("The developer")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${responsible_for_managing == 'The developer' && 'bg-white text-black'}`}>
+                                    <span>The developer</span>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-2 border-b border-neutral-400">
+                                <input className="bg-transparent outline-none py-2 w-full placeholder:text-neutral-400 text-lg" type={'text'} placeholder={'Other'} onChange={(e) => setResponsibleForManaging(e.target.value)} />
+                            </div>
+                        </Section>
+                        <Section 
+                            title={"What is the client's marketing and positioning strategy?"} 
+                        >
+                            <div className="grid grid-cols-1 sm:grid-cols-2 items-center gap-2 pb-3">
+                                <div onClick={() => setMarketingStrategy("Social media")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${marketing_strategy == 'Social media' && 'bg-white text-black'}`}>
+                                    <span>Social media</span>
+                                </div>
+                                <div onClick={() => setMarketingStrategy("Email marketing")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${marketing_strategy == 'Email marketing' && 'bg-white text-black'}`}>
+                                    <span>Email marketing</span>
+                                </div>
+                                <div onClick={() => setMarketingStrategy("Search engine optimization")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${marketing_strategy == 'Search engine optimization' && 'bg-white text-black'}`}>
+                                    <span>Search engine optimization</span>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-2 border-b border-neutral-400">
+                                <input className="bg-transparent outline-none py-2 w-full placeholder:text-neutral-400 text-lg" type={'text'} placeholder={'Other'} onChange={(e) => setMarketingStrategy(e.target.value)} />
+                            </div>
+                        </Section>
+                        <Section 
+                            title={"Are there competitor websites that should be taken into account as references?"} 
+                        >
+                            <div className="grid grid-cols-1 sm:grid-cols-2 items-center gap-2 pb-3">
+                                <div onClick={() => setCompetitorWebsites(true)} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${competitor_websites && 'bg-white text-black'}`}>
+                                    <span>Yes</span>
+                                </div>
+                                <div onClick={() => setCompetitorWebsites(false)} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${!competitor_websites && 'bg-white text-black'}`}>
+                                    <span>No</span>
+                                </div>
+                            </div>
+                        </Section>
                     </section>
-                    <button type={step == 3 ? 'submit' : 'button'} onClick={handleChangeStep} className={`py-2 px-4 bg-gradient rounded-xl text-lg uppercase font-bold text-center cursor-pointer ${!projectQuoteAnimation ? 'lazy-load-4 block' : 'hidden'}`}>{step < 3 ? 'Next' : 'Submit'}</button>
+                    <div className="flex items-center gap-2 lazy-load-4">
+                        <button type={'button'} onClick={handlePrevStep} className={`${step == 1 ? 'hidden' : 'block'} py-2 px-4 bg-gradient rounded-xl text-lg uppercase font-bold text-center cursor-pointer ${!projectQuoteAnimation ? 'block' : 'hidden'} w-full`}>Back</button>
+                        <button type={step == 3 ? 'submit' : 'button'} onClick={handleNextStep} className={`py-2 px-4 bg-gradient rounded-xl text-lg uppercase font-bold text-center cursor-pointer ${!projectQuoteAnimation ? 'block' : 'hidden'} w-full`}>{step < 3 ? 'Next' : 'Submit'}</button>
+                    </div>
                 </Form>
             )}
         </Formik>
@@ -388,7 +536,7 @@ function Section({title, subtitle, children, classes}) {
 
 function Input({ props }) {
 
-    const { placeholder, ref, type, name, required, } = props;
+    const { placeholder, ref, type, name, required } = props;
 
     return (
         <div className="flex items-center gap-2 border-b border-neutral-400">

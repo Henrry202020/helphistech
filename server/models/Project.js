@@ -25,6 +25,27 @@ const projectSchema = mongoose.Schema({
     description: {
         type: String
     },
+    company_info: {
+        full_name: String,
+        business_type: String,
+        company_vision: String,
+        target_audience: String,
+        service_or_product: String,
+        expected_deilvertime: { 
+            from: Number, to: Number 
+        },
+    },
+    project_info: {
+        functionalities: [String],
+        functionalities_other: String,
+        web_design_type: String,
+        ecommerce_funtionabilites: Boolean,
+        content_to_include: Boolean,
+        preferred_technologies: String,
+        responsible_for_managing: String,
+        marketing_strategy: String,
+        competitor_websites: Boolean,
+    },
     state: {
         type: String,
         default: 'onhold',
