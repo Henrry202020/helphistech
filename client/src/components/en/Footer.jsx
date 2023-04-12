@@ -42,15 +42,15 @@ export default function Footer() {
                                 <div>GitHub</div>
                             </Link>
                             <Link className="flex items-center gap-2 hover:text-neutral-400" href={"https://youtube.com/@HelphisTech"}>
-                                <div className="grid place-content-center w-4"><i class="fa-brands fa-youtube"></i></div>
+                                <div className="grid place-content-center w-4"><i className="fa-brands fa-youtube"></i></div>
                                 <div>Youtube</div>
                             </Link>
                             <Link className="flex items-center gap-2 hover:text-neutral-400" href={"https://instagram.com"}>
-                                <div className="grid place-content-center w-4"><i class="fa-brands fa-instagram"></i></div>
+                                <div className="grid place-content-center w-4"><i className="fa-brands fa-instagram"></i></div>
                                 <div>Instagram</div>
                             </Link>
                             <Link className="flex items-center gap-2 hover:text-neutral-400" href={"https://twitter.com/"}>
-                                <div className="grid place-content-center w-4"><i class="fa-brands fa-twitter"></i></div>
+                                <div className="grid place-content-center w-4"><i className="fa-brands fa-twitter"></i></div>
                                 <div>Twitter</div>
                             </Link>
                         </div>

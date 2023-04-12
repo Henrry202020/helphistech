@@ -13,12 +13,13 @@ import FooterES from "./es/Footer";
 import ProjectQuoteES from "./es/ProjectQuote";
 // Hooks
 import useContextProvider from "@/hooks/useAppContextProvider";
+import { useEffect } from "react";
 
 export default function Layout({ title, children }) {
 
     // Get functions and variables from context
     const { language, darkMode, showProjectQuote } = useContextProvider();
-
+    
     return(
         <>
             <Head>
