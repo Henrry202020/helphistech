@@ -239,14 +239,10 @@ function FormComponent() {
                 >
                     <div className="flex flex-col gap-2">
                         <div className="flex items-center border-b border-neutral-400">
-                            <div className="flex items-center gap-2 border-b border-neutral-400">
-                                <input className="bg-transparent outline-none py-2 w-full placeholder:text-neutral-400 text-lg" type={'text'} placeholder={'Vollständiger Name'} ref={full_name} />
-                            </div>
+                            <input className="bg-transparent outline-none py-2 w-full placeholder:text-neutral-400 text-lg" type={'text'} placeholder={'Vollständiger Name'} ref={full_name} />
                         </div>
                         <div className="flex items-center border-b border-neutral-400">
-                            <div className="flex items-center gap-2 border-b border-neutral-400">
-                                <input className="bg-transparent outline-none py-2 w-full placeholder:text-neutral-400 text-lg" type={'email'} placeholder={'E-Mail'} ref={email} />
-                            </div>
+                            <input className="bg-transparent outline-none py-2 w-full placeholder:text-neutral-400 text-lg" type={'email'} placeholder={'E-Mail'} ref={email} />
                         </div>
                     </div>
                 </Section>
