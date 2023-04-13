@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default async function handler(req, res) {
-	const { language, project } = req.body;
+	const { project } = req.body;
 	try {
         const { data } = await axios.request({
             url: `${process.env.SERVER_URI}/v1/projects`,
