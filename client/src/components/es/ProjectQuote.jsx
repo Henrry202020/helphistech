@@ -568,15 +568,33 @@ function FormComponent() {
                 <Section 
                     title={"¿Qué lenguaje de programación y tecnologías se prefieren para el desarrollo?"} 
                 >
-                    <div className="grid grid-cols-1 sm:grid-cols-2 items-center gap-2 pb-3">
-                        <div onClick={() => setMultiOptionState(preferred_technologies, setPreferredTechnologies, "HTML/CSS/JavaScript")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${preferred_technologies.indexOf("HTML/CSS/JavaScript") > -1 && 'bg-white text-black'}`}>
-                            <span>HTML/CSS/JavaScript</span>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 items-center gap-2 pb-3">
+                        <div onClick={() => setMultiOptionState(preferred_technologies, setPreferredTechnologies, "React")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${preferred_technologies.indexOf("React") > -1 && 'bg-white text-black'}`}>
+                            <span>React</span>
                         </div>
-                        <div onClick={() => setMultiOptionState(preferred_technologies, setPreferredTechnologies, "PHP/MySQL")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${preferred_technologies.indexOf("PHP/MySQL") > -1 && 'bg-white text-black'}`}>
-                            <span>PHP/MySQL</span>
+                        <div onClick={() => setMultiOptionState(preferred_technologies, setPreferredTechnologies, "Next.js")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${preferred_technologies.indexOf("Next.js") > -1 && 'bg-white text-black'}`}>
+                            <span>Next.js</span>
                         </div>
-                        <div onClick={() => setMultiOptionState(preferred_technologies, setPreferredTechnologies, "Python/Django")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${preferred_technologies.indexOf("Python/Django") > -1 && 'bg-white text-black'}`}>
-                            <span>Python/Django</span>
+                        <div onClick={() => setMultiOptionState(preferred_technologies, setPreferredTechnologies, "Vite.js")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${preferred_technologies.indexOf("Vite.js") > -1 && 'bg-white text-black'}`}>
+                            <span>Vite.js</span>
+                        </div>
+                        <div onClick={() => setMultiOptionState(preferred_technologies, setPreferredTechnologies, "Angular")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${preferred_technologies.indexOf("Angular") > -1 && 'bg-white text-black'}`}>
+                            <span>Angular</span>
+                        </div>
+                        <div onClick={() => setMultiOptionState(preferred_technologies, setPreferredTechnologies, "Tailwind")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${preferred_technologies.indexOf("Tailwind") > -1 && 'bg-white text-black'}`}>
+                            <span>Tailwind</span>
+                        </div>
+                        <div onClick={() => setMultiOptionState(preferred_technologies, setPreferredTechnologies, "Node.js")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${preferred_technologies.indexOf("Node.js") > -1 && 'bg-white text-black'}`}>
+                            <span>Node.js</span>
+                        </div>
+                        <div onClick={() => setMultiOptionState(preferred_technologies, setPreferredTechnologies, "Express")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${preferred_technologies.indexOf("Express") > -1 && 'bg-white text-black'}`}>
+                            <span>Express</span>
+                        </div>
+                        <div onClick={() => setMultiOptionState(preferred_technologies, setPreferredTechnologies, "MongoDB")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${preferred_technologies.indexOf("MongoDB") > -1 && 'bg-white text-black'}`}>
+                            <span>MongoDB</span>
+                        </div>
+                        <div onClick={() => setMultiOptionState(preferred_technologies, setPreferredTechnologies, "MySQL")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${preferred_technologies.indexOf("MySQL") > -1 && 'bg-white text-black'}`}>
+                            <span>MySQL</span>
                         </div>
                     </div>
                     <div className="flex items-center gap-2 border-b border-neutral-400">
