@@ -10,22 +10,152 @@ export default function ProjectQuote() {
     // Get functions and variables from context
     const { projectQuoteAnimation, handleCloseProjectQuote } = useContextProvider();
 
+    const [ showVideoCallForm, setShowVideoCallForm ] = useState(false);
+
     return (
         <div className="fixed top-0 left-0 w-screen h-screen">
             <div className={`fixed top-0 w-screen h-screen bg-black ${projectQuoteAnimation ? 'full-screen-menu-close' : 'full-screen-menu-open'}`}></div>
             <div className={`absolute top-0 left-0 w-screen h-screen px-10 overflow-y-scroll text-white ${!projectQuoteAnimation ? 'lazy-load-1' : 'hidden'}`}>
-                <div className="flex flex-col lg:flex-row items-start justify-center gap-16 pt-20 xl:gap-12 lg:max-w-6xl mx-auto" id="quote-project-form">
+                <div className="flex flex-col lg:flex-row lg:items-start justify-center gap-16 py-20 xl:gap-12 lg:max-w-6xl mx-auto lg:h-full" id="quote-project-form">
                     <div onClick={handleCloseProjectQuote} className="absolute top-5 right-8 text-white text-3xl cursor-pointer hover:text-neutral-300 transition-colors"><i className="fa-solid fa-xmark"></i></div>
-                    <div className={`flex flex-col justify-center gap-5 lg:w-1/2 lg:pl-5`}>
-                        <div className={`text-6xl font-extrabold text-gradient lg:h-36 lg:leading-[4rem] lazy-load-1 ${projectQuoteAnimation ? 'hidden' : 'block'}`}>Cotiza tu<br /> proyecto.</div>
-                        <div className={`lg:max-w-xs xl:max-w-md lazy-load-2 text-neutral-200 ${projectQuoteAnimation ? 'hidden' : 'block'}`}>Gracias por tu interés. ¡Cuéntanos sobre tu proyecto o idea para que podamos empezar a trabajar juntos!</div>
+                    <div className="flex flex-col justify-between gap-10 lg:h-full">
+                        <div className={`flex flex-col justify-center gap-5 w-full`}>
+                            <div className={`text-6xl font-extrabold text-gradient h-fit lg:leading-[4rem] lazy-load-1 ${projectQuoteAnimation ? 'hidden' : 'block'}`}>
+                                <span className="w-full">Cotiza tu</span>
+                                <br /> 
+                                <span className="w-full">proyecto.</span>
+                            </div>
+                            <div className={`max-w-xs xl:max-w-md lazy-load-2 text-neutral-200 ${projectQuoteAnimation ? 'hidden' : 'block'}`}>Gracias por tu interés. ¡Cuéntanos sobre tu proyecto o idea para que podamos empezar a trabajar juntos!</div>
+                        </div>
+                        <div className="flex flex-col gap-5">
+                            <div className={`text-6xl font-extrabold text-gradient h-fit lg:leading-[4rem] lazy-load-1 ${projectQuoteAnimation ? 'hidden' : 'block'}`}>
+                                <span className="w-full">Agenda tu</span>
+                                <br /> 
+                                <span className="w-full">videollamada.</span>
+                            </div>
+                            <div className="max-w-xs">También puedes agendar una videollamada y hablar directamente con nosotros!</div>
+                            <button onClick={() => setShowVideoCallForm(current => !current)} className="px-4 py-2 rounded-md text-white font-semibold uppercase bg-dark-main w-fit select-none">Agendar Videollamada</button>
+                        </div>
                     </div>
                     <div className="flex flex-col gap-8 lg:w-1/2 lg:pr-5 pb-20">
-                        <FormComponent />
+                        { showVideoCallForm ? (
+                            <VideoCallComponent closeVideoCallForm={() => setShowVideoCallForm(false)} />
+                        ) : (
+                            <FormComponent />
+                        )}
                     </div>
                 </div>
             </div>
         </div>
+    )
+}
+
+// Date picker imports
+import { format } from 'date-fns';
+import { DayPicker } from 'react-day-picker';
+import 'react-day-picker/dist/style.css';
+
+function VideoCallComponent({ closeVideoCallForm }) {
+
+    // on submit show message
+    const [ message, setMessage ] = useState({ error: false, text: '' });
+
+    // date picker settings
+    // const [ showDatePicker, setShowDatePicker ] = useState(false);
+    const today = new Date();
+    const day = today.getDate();
+    const year = today.getFullYear();
+    const month = (today.getMonth());
+    const disabledDays = [
+        { from: new Date(year, month, 1), to: new Date(year, month, (day + 3))}
+    ]
+
+    const [ full_name, setFullName ] = useState('');
+    const [ email, setEmail ] = useState('');
+    const [ date, setDate ] = useState('');
+    const [ hour, setHour ] = useState('');
+
+    function showMessage(error, text, timeout) {
+        document.getElementById("quote-project-form").scrollIntoView({ behavior: 'smooth' });
+        setMessage({ error, text })
+        setTimeout(() => {
+            setMessage({ error: false, text: '' })
+        }, timeout)
+    }
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+
+        if([full_name, email, date, hour].includes('')) {
+            showMessage(true, 'Todos los campos son obligatorios', 5000)
+            return;
+        }
+
+
+        try {
+            await axios.post('/api/sendVideoCall', { full_name, email, date, hour });
+            showMessage(false, 'Se agendó tu videollamada correctamente', 5000);
+        } catch (error) {
+            showMessage(true, 'Hubo un error al agendar tu videollamada', 5000);
+        }
+    }
+
+    return (
+        <form className="flex flex-col gap-5 lazy-load-1" onSubmit={handleSubmit}>
+            { message.text && (
+                <div className={`${message.error ? 'bg-red-500' : 'bg-light-main'} py-2 w-full text-white uppercase font-semibold text-center rounded-md`}>{message.text}</div>
+            )}
+            <div className="flex flex-col">
+                <div className="text-2xl font-semibold">Nombre completo</div>
+                <div className="flex items-center gap-2 border-b border-neutral-400">
+                    <input className="bg-transparent outline-none py-2 w-full placeholder:text-neutral-400 text-lg" type={'text'} placeholder={'Ingresa tu nombre'} onChange={(e) => setFullName(e.target.value)} />
+                </div>
+            </div>
+            <div className="flex flex-col">
+                <div className="text-2xl font-semibold">Email de contacto</div>
+                <div className="flex items-center border-b border-neutral-400">
+                    <input className="bg-transparent outline-none py-2 w-full placeholder:text-neutral-400 text-lg" type={'email'} placeholder={'Ingresa tu e-mail'} onChange={(e) => setEmail(e.target.value)} />
+                </div>
+            </div>
+            <div className="flex flex-col gap-4">
+                <div className="flex flex-col">
+                    <div className="text-2xl font-semibold">Elige una fecha y hora de encuentro</div>
+                    <div className="text-neutral-400">Zona horaria: GMT+2</div>
+                </div>
+                <div className="flex justify-between items-start">
+                    <DayPicker
+                        mode="single"
+                        selected={date}
+                        onSelect={setDate}
+                        disabled={disabledDays}
+                        fromMonth={new Date(year, month)}
+                        toMonth={new Date(year, (month + 4))}
+                    />
+                    <select name="" id="" className="bg-transparent text-white video-call-select outline-none border border-neutral-600 rounded-md px-3 py-2 text-lg" value={hour} onChange={(e) => setHour(e.target.value)}>
+                        <option value="">Seleccionar hora</option>
+                        <option value="14:00">14:00</option>
+                        <option value="16:00">16:00</option>
+                        <option value="20:00">20:00</option>
+                    </select>
+                </div>
+            </div>
+            {/* <div className="flex flex-col gap-4">
+                <div className="text-2xl font-semibold">Elige una hora de encuentro</div>
+                <div className="flex items-center border-b border-neutral-400">
+                    <input className="bg-transparent outline-none py-2 w-full placeholder:text-neutral-400 text-lg" type={'text'} placeholder={'Ingresa la hora. Ej: 08:00 PM'} onChange={(e) => setHour(e.target.value)} />
+                </div>
+            </div> */}
+            {/* <div className="flex flex-col gap-4">
+                <div className="text-2xl font-semibold">¿Cuál es tu zona horaria?</div>
+                <div className="flex items-center border-b border-neutral-400">
+                    <input className="bg-transparent outline-none py-2 w-full placeholder:text-neutral-400 text-lg" type={'text'} placeholder={'Ingresa tu zona horaria. Ej: GMT+2'} onChange={(e) => setTimezone(e.target.value)} />
+                </div>
+            </div> */}
+            <div className="flex items-center gap-2 lazy-load-4">
+                <button type={'button'} onClick={closeVideoCallForm} className={`py-2 px-4 bg-gradient rounded-xl text-lg uppercase font-bold text-center cursor-pointer w-full`}>Volver </button>
+                <button type={'submit'} className={`py-2 px-4 bg-gradient rounded-xl text-lg uppercase font-bold text-center cursor-pointer w-full`}>Enviar</button>
+            </div>
+        </form>
     )
 }
 

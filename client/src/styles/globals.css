@@ -266,3 +266,11 @@ input:-webkit-autofill:active{
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 }
+
+.rdp {
+	margin: 0 !important;
+}
+
+.video-call-select option {
+	background-color: rgba(0, 0, 0, 1);
+}

@@ -32,12 +32,24 @@ export default function Sidebar() {
                         permissions={"admin"}
                         icon={'fa-regular fa-rectangle-history-circle-user'}
                         href={`/admin/projects`}
-                    >Recibidos</SidebarItem>
+                    >Recibido</SidebarItem>
                     <SidebarItem 
                         permissions={"superadmin"}
                         icon={'fa-regular fa-folder-xmark'}
                         href={`/admin/projects/cancelled`}
-                    >Cancelados</SidebarItem>
+                    >Cancelado</SidebarItem>
+                </SidebarSection>
+                <SidebarSection title={"Videollamadas"} permissions={"admin"}>
+                    <SidebarItem 
+                        permissions={"admin"}
+                        icon={'fa-regular fa-video'}
+                        href={`/admin/projects`}
+                    >Recibido</SidebarItem>
+                    <SidebarItem 
+                        permissions={"superadmin"}
+                        icon={'fa-regular fa-video-slash'}
+                        href={`/admin/projects/cancelled`}
+                    >Cancelado</SidebarItem>
                 </SidebarSection>
                 <SidebarSection title={"Usuarios"} permissions={"superadmin"}>
                     <SidebarItem 

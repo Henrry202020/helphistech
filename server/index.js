@@ -15,6 +15,7 @@ import userRoutesES from './routes/es/userRoutes.js';
 // Admin routes
 import projectRoutes from './routes/projectRoutes.js'
 import accountsRoutes from './routes/accountsRoutes.js'
+import videoCallRoutes from './routes/videoCallRoutes.js'
 
 const app = express();
 app.use(express.json());
@@ -49,6 +50,7 @@ app.use('/v1/es/users', userRoutesES);
 // Admin routes
 app.use('/v1/projects', projectRoutes);
 app.use('/v1/accounts', accountsRoutes);
+app.use('/v1/videocall', videoCallRoutes);
 
 // Server
 const PORT = process.env.PORT || 4000;
