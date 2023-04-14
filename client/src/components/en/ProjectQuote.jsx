@@ -179,14 +179,13 @@ function FormComponent() {
     const email = useRef('');
     const description = useRef('');
 
-    // 2ND FORM - What is the full name of the company or client?
-    const company_fullname = useRef('');
+    // 2ND FORM
     // What type of business does the client have?
     const [ business_type, setBusinessType ] = useState('');
     // What is the company's vision and mission?
-    const [ company_vision, setCompanyVision ] = useState('');
+    const [ company_vision, setCompanyVision ] = useState([]);
     // Who is the target audience for the company?
-    const [ target_audience, setTargetAudience ] = useState('');
+    const [ target_audience, setTargetAudience ] = useState([]);
     // What services or products does the company offer?
     const [ service_or_product, setServiceOrProduct ] = useState('');
     // What is the expected delivery timeline?
@@ -194,29 +193,29 @@ function FormComponent() {
     
     // 3RD FORM -  What functionalities should the web have?
     const [ functionalities, setFunctionalities ] = useState([]);
-    const functionalities_other = useRef('');
-    function handleFunctionabilites(value) {
-        if(functionalities.indexOf(value) > -1) {
-            const newFunctionabilites = functionalities.filter(f => f != value);
-            setFunctionalities(newFunctionabilites);
-        } else {
-            setFunctionalities(current => current.concat([value]));
-        }
-    }
     // Should the web be responsive or have a specific design?
-    const [ web_design_type, setWebDesignType ] = useState('');
+    const [ web_design_type, setWebDesignType ] = useState([]);
     // Are e-commerce functionalities needed on the web?
     const [ ecommerce_funtionabilites, setEcommerceFunc ] = useState(false);
     // Does the client have any content (text, images, videos) to include on the web?
     const [ content_to_include, setContentToInclude ] = useState(false);
     // What programming language and technologies are preferred for development?
-    const [ preferred_technologies, setPreferredTechnologies ] = useState('');
+    const [ preferred_technologies, setPreferredTechnologies ] = useState([]);
     // Who will be responsible for managing the web once the project is completed?
     const [ responsible_for_managing, setResponsibleForManaging ] = useState('');
     // What is the client's marketing and positioning strategy?
-    const [ marketing_strategy, setMarketingStrategy ] = useState('');
+    const [ marketing_strategy, setMarketingStrategy ] = useState([]);
     // Are there competitor websites that should be taken into account as references?
     const [ competitor_websites, setCompetitorWebsites ] = useState(false);
+    // 
+    function setMultiOptionState(state, setter, value) {
+        if(state.indexOf(value) > -1) {
+            const newState = state.filter(f => f != value);
+            setter(newState);
+        } else {
+            setter(current => current.concat([value]));
+        }
+    }
 
     // Reset form fields on submit
     function resetForm() {
@@ -226,21 +225,19 @@ function FormComponent() {
         email.current.value = '';
         description.current.value = '';
         // 
-        company_fullname.current.value = '';
         setBusinessType('');
-        setCompanyVision('');
-        setTargetAudience('');
+        setCompanyVision([]);
+        setTargetAudience([]);
         setServiceOrProduct('');
         setExpectedDeliverTime({ from: null, to: null });
         // 
         setFunctionalities([]);
-        functionalities_other.current.value = '';
-        setWebDesignType('');
+        setWebDesignType([]);
         setEcommerceFunc(false);
         setContentToInclude(false);
-        setPreferredTechnologies('');
+        setPreferredTechnologies([]);
         setResponsibleForManaging('');
-        setMarketingStrategy('');
+        setMarketingStrategy([]);
         setCompetitorWebsites(false);
         // 
         setStep(1);
@@ -258,7 +255,7 @@ function FormComponent() {
         e.preventDefault();
 
         // If fields are void then return
-        if([type, full_name.current.value, email.current.value, company_fullname, business_type, company_vision, target_audience, service_or_product, web_design_type, ecommerce_funtionabilites, content_to_include, preferred_technologies, responsible_for_managing, marketing_strategy, competitor_websites].includes('')) {
+        if([type, full_name.current.value, email.current.value, business_type, company_vision, target_audience, service_or_product, web_design_type, ecommerce_funtionabilites, content_to_include, preferred_technologies, responsible_for_managing, marketing_strategy, competitor_websites].includes('')) {
             showMessage(true, 'You must complete all fields.', 5000)
             return;
         }
@@ -268,7 +265,7 @@ function FormComponent() {
             return;
         }
 
-        if(functionalities.length == 0 && functionalities_other == '') {
+        if(functionalities.length == 0) {
             showMessage(true, 'You must complete all fields.', 5000)
             return;
         }
@@ -282,7 +279,6 @@ function FormComponent() {
             },
             description: description.current.value,
             company_info: {
-                full_name: company_fullname.current.value,
                 business_type,
                 company_vision,
                 target_audience,
@@ -291,7 +287,6 @@ function FormComponent() {
             },
             project_info: {
                 functionalities,
-                functionalities_other: functionalities_other.current.value || '',
                 web_design_type,
                 ecommerce_funtionabilites,
                 content_to_include,
@@ -320,7 +315,7 @@ function FormComponent() {
             showMessage(true, 'You must complete all fields.', 5000)
             return;
         }
-        if(step == 2 && [company_fullname.current.value, business_type, company_vision, target_audience, service_or_product].includes('')) {
+        if(step == 2 && [business_type, company_vision, target_audience, service_or_product].includes('')) {
             showMessage(true, 'You must complete all fields.', 5000)
             return;
         }
@@ -413,16 +408,6 @@ function FormComponent() {
             </section>
             <section id="step2" className={`flex flex-col gap-6 ${step == 2 ? 'block' : 'hidden'}`}>
                 <Section 
-                    title={"What is the full name of the company or client?"} 
-                >
-                    <Input props={{
-                        placeholder: 'Full name', 
-                        ref: company_fullname, 
-                        type: 'text', 
-                        required: false
-                    }} />
-                </Section>
-                <Section 
                     title={"What type of business does the client have?"} 
                 >
                     <div className="grid grid-cols-2 sm:grid-cols-3 items-center gap-2 pb-3">
@@ -444,42 +429,42 @@ function FormComponent() {
                     title={"What is the company's vision and mission?"} 
                 >
                     <div className="grid grid-cols-1 sm:grid-cols-2 items-center gap-2 pb-3">
-                        <div onClick={() => setCompanyVision('increase-profitability')} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${company_vision === 'increase-profitability' && 'bg-white text-black'}`}>
+                        <div onClick={() => setMultiOptionState(company_vision, setCompanyVision, "increase-profitability")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${company_vision.indexOf("increase-profitability") > -1 && 'bg-white text-black'}`}>
                             <span>Increase profitability</span>
                         </div>
-                        <div onClick={() => setCompanyVision('enhance-customer-satisfaction')} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${company_vision === 'enhance-customer-satisfaction' && 'bg-white text-black'}`}>
+                        <div onClick={() => setMultiOptionState(company_vision, setCompanyVision, "enhance-customer-satisfaction")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${company_vision.indexOf("enhance-customer-satisfaction") > -1 && 'bg-white text-black'}`}>
                             <span>Enhance customer satisfaction</span>
                         </div>
-                        <div onClick={() => setCompanyVision('promote-sustainability')} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${company_vision === 'promote-sustainability' && 'bg-white text-black'}`}>
+                        <div onClick={() => setMultiOptionState(company_vision, setCompanyVision, "promote-sustainability")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${company_vision.indexOf("promote-sustainability") > -1 && 'bg-white text-black'}`}>
                             <span>Promote sustainability</span>
                         </div>
                     </div>
                     <div className="flex items-center gap-2 border-b border-neutral-400">
-                        <input className="bg-transparent outline-none py-2 w-full placeholder:text-neutral-400 text-lg" type={'text'} placeholder={'Other (please specify)'} onChange={(e) => setCompanyVision(e.target.value)} />
+                        <input className="bg-transparent outline-none py-2 w-full placeholder:text-neutral-400 text-lg" type={'text'} placeholder={'Other (please specify)'} onChange={(e) => setCompanyVision([e.target.value])} />
                     </div>
                 </Section>
                 <Section 
                     title={"Who is the target audience for the company?"} 
                 >
                     <div className="grid grid-cols-2 sm:grid-cols-3 items-center gap-2 pb-3">
-                        <div onClick={() => setTargetAudience('children')} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${target_audience === 'children' && 'bg-white text-black'}`}>
+                        <div onClick={() => setMultiOptionState(target_audience, setTargetAudience, "children")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${target_audience.indexOf("children") > -1 && 'bg-white text-black'}`}>
                             <span>Children</span>
                         </div>
-                        <div onClick={() => setTargetAudience('teenagers')} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${target_audience === 'teenagers' && 'bg-white text-black'}`}>
+                        <div onClick={() => setMultiOptionState(target_audience, setTargetAudience, "teenagers")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${target_audience.indexOf("teenagers") > -1 && 'bg-white text-black'}`}>
                             <span>Teenagers</span>
                         </div>
-                        <div onClick={() => setTargetAudience('young-adults')} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${target_audience === 'young-adults' && 'bg-white text-black'}`}>
+                        <div onClick={() => setMultiOptionState(target_audience, setTargetAudience, "young-adults")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${target_audience.indexOf("young-adults") > -1 && 'bg-white text-black'}`}>
                             <span>Young adults</span>
                         </div>
-                        <div onClick={() => setTargetAudience('adults')} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${target_audience === 'adults' && 'bg-white text-black'}`}>
+                        <div onClick={() => setMultiOptionState(target_audience, setTargetAudience, "adults")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${target_audience.indexOf("adults") > -1 && 'bg-white text-black'}`}>
                             <span>Adults</span>
                         </div>
-                        <div onClick={() => setTargetAudience('seniors')} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${target_audience === 'seniors' && 'bg-white text-black'}`}>
+                        <div onClick={() => setMultiOptionState(target_audience, setTargetAudience, "seniors")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${target_audience.indexOf("seniors") > -1 && 'bg-white text-black'}`}>
                             <span>Seniors</span>
                         </div>
                     </div>
                     <div className="flex items-center gap-2 border-b border-neutral-400">
-                        <input className="bg-transparent outline-none py-2 w-full placeholder:text-neutral-400 text-lg" type={'text'} placeholder={'Other (please specify)'} onChange={(e) => setTargetAudience(e.target.value)} />
+                        <input className="bg-transparent outline-none py-2 w-full placeholder:text-neutral-400 text-lg" type={'text'} placeholder={'Other (please specify)'} onChange={(e) => setTargetAudience([e.target.value])} />
                     </div>
                 </Section>
                 <Section 
@@ -524,31 +509,31 @@ function FormComponent() {
                     title={"What functionalities should the web have?"} 
                 >
                     <div className="grid grid-cols-1 sm:grid-cols-2 items-center gap-2 pb-3">
-                        <div onClick={() => handleFunctionabilites("contact-form")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${functionalities.indexOf("contact-form") > -1 && 'bg-white text-black'}`}>
+                        <div onClick={() => setMultiOptionState(functionalities, setFunctionalities, "contact-form")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${functionalities.indexOf("contact-form") > -1 && 'bg-white text-black'}`}>
                             <span>Contact form</span>
                         </div>
-                        <div onClick={() => handleFunctionabilites("image-gallery")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${functionalities.indexOf("image-gallery") > -1 && 'bg-white text-black'}`}>
+                        <div onClick={() => setMultiOptionState(functionalities, setFunctionalities, "image-gallery")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${functionalities.indexOf("image-gallery") > -1 && 'bg-white text-black'}`}>
                             <span>Image gallery</span>
                         </div>
-                        <div onClick={() => handleFunctionabilites("blog-section")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${functionalities.indexOf("blog-section") > -1 && 'bg-white text-black'}`}>
+                        <div onClick={() => setMultiOptionState(functionalities, setFunctionalities, "blog-section")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${functionalities.indexOf("blog-section") > -1 && 'bg-white text-black'}`}>
                             <span>Blog section</span>
                         </div>
-                        <div onClick={() => handleFunctionabilites("social-media-integration")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${functionalities.indexOf("social-media-integration") > -1 && 'bg-white text-black'}`}>
+                        <div onClick={() => setMultiOptionState(functionalities, setFunctionalities, "social-media-integration")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${functionalities.indexOf("social-media-integration") > -1 && 'bg-white text-black'}`}>
                             <span>Social media integration</span>
                         </div>
                     </div>
                     <div className="flex items-center gap-2 border-b border-neutral-400">
-                        <input className="bg-transparent outline-none py-2 w-full placeholder:text-neutral-400 text-lg" type={'text'} placeholder={'Other (please specify)'} ref={functionalities_other} />
+                        <input className="bg-transparent outline-none py-2 w-full placeholder:text-neutral-400 text-lg" type={'text'} placeholder={'Other (please specify)'} onChange={(e) => setFunctionalities([e.target.value])} />
                     </div>
                 </Section>
                 <Section 
                     title={"Should the web be responsive or have a specific design?"} 
                 >
                     <div className="grid grid-cols-1 sm:grid-cols-2 items-center gap-2 pb-3">
-                        <div onClick={() => setWebDesignType("responsive")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${web_design_type == 'responsive' && 'bg-white text-black'}`}>
+                        <div onClick={() => setMultiOptionState(web_design_type, setWebDesignType, "responsive")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${web_design_type.indexOf("responsive") > -1 && 'bg-white text-black'}`}>
                             <span>Responsive</span>
                         </div>
-                        <div onClick={() => setWebDesignType("specific-design")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${web_design_type == 'specific-design' && 'bg-white text-black'}`}>
+                        <div onClick={() => setMultiOptionState(web_design_type, setWebDesignType, "specific-design")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${web_design_type.indexOf("specific-design") > -1 && 'bg-white text-black'}`}>
                             <span>Specific design</span>
                         </div>
                     </div>
@@ -581,18 +566,18 @@ function FormComponent() {
                     title={"What programming language and technologies are preferred for development?"} 
                 >
                     <div className="grid grid-cols-1 sm:grid-cols-2 items-center gap-2 pb-3">
-                        <div onClick={() => setPreferredTechnologies("HTML/CSS/JavaScript")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${preferred_technologies == 'HTML/CSS/JavaScript' && 'bg-white text-black'}`}>
+                        <div onClick={() => setMultiOptionState(preferred_technologies, setPreferredTechnologies, "HTML/CSS/JavaScript")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${preferred_technologies.indexOf("HTML/CSS/JavaScript") > -1 && 'bg-white text-black'}`}>
                             <span>HTML/CSS/JavaScript</span>
                         </div>
-                        <div onClick={() => setPreferredTechnologies("PHP/MySQL")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${preferred_technologies == 'PHP/MySQL' && 'bg-white text-black'}`}>
+                        <div onClick={() => setMultiOptionState(preferred_technologies, setPreferredTechnologies, "PHP/MySQL")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${preferred_technologies.indexOf("PHP/MySQL") > -1 && 'bg-white text-black'}`}>
                             <span>PHP/MySQL</span>
                         </div>
-                        <div onClick={() => setPreferredTechnologies("Python/Django")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${preferred_technologies == 'Python/Django' && 'bg-white text-black'}`}>
+                        <div onClick={() => setMultiOptionState(preferred_technologies, setPreferredTechnologies, "Python/Django")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${preferred_technologies.indexOf("Python/Django") > -1 && 'bg-white text-black'}`}>
                             <span>Python/Django</span>
                         </div>
                     </div>
                     <div className="flex items-center gap-2 border-b border-neutral-400">
-                        <input className="bg-transparent outline-none py-2 w-full placeholder:text-neutral-400 text-lg" type={'text'} placeholder={'Other (please specify)'} onChange={(e) => setPreferredTechnologies(e.target.value)} />
+                        <input className="bg-transparent outline-none py-2 w-full placeholder:text-neutral-400 text-lg" type={'text'} placeholder={'Other (please specify)'} onChange={(e) => setPreferredTechnologies([e.target.value])} />
                     </div>
                 </Section>
                 <Section 
@@ -614,18 +599,18 @@ function FormComponent() {
                     title={"What is the client's marketing and positioning strategy?"} 
                 >
                     <div className="grid grid-cols-1 sm:grid-cols-2 items-center gap-2 pb-3">
-                        <div onClick={() => setMarketingStrategy("social-media")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${marketing_strategy == 'social-media' && 'bg-white text-black'}`}>
+                        <div onClick={() => setMultiOptionState(marketing_strategy, setMarketingStrategy, "social-media")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${marketing_strategy.indexOf("social-media") > -1 && 'bg-white text-black'}`}>
                             <span>Social media</span>
                         </div>
-                        <div onClick={() => setMarketingStrategy("email-marketing")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${marketing_strategy == 'email-marketing' && 'bg-white text-black'}`}>
+                        <div onClick={() => setMultiOptionState(marketing_strategy, setMarketingStrategy, "email-marketing")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${marketing_strategy.indexOf("email-marketing") > -1 && 'bg-white text-black'}`}>
                             <span>Email marketing</span>
                         </div>
-                        <div onClick={() => setMarketingStrategy("search-engine-optimization")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${marketing_strategy == 'search-engine-optimization' && 'bg-white text-black'}`}>
+                        <div onClick={() => setMultiOptionState(marketing_strategy, setMarketingStrategy, "SEO")} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${marketing_strategy.indexOf("SEO") > -1 && 'bg-white text-black'}`}>
                             <span>SEO</span>
                         </div>
                     </div>
                     <div className="flex items-center gap-2 border-b border-neutral-400">
-                        <input className="bg-transparent outline-none py-2 w-full placeholder:text-neutral-400 text-lg" type={'text'} placeholder={'Other (please specify)'} onChange={(e) => setMarketingStrategy(e.target.value)} />
+                        <input className="bg-transparent outline-none py-2 w-full placeholder:text-neutral-400 text-lg" type={'text'} placeholder={'Other (please specify)'} onChange={(e) => setMarketingStrategy([e.target.value])} />
                     </div>
                 </Section>
                 <Section 
