@@ -41,7 +41,7 @@ export default function ESPHome() {
 										<div className={`px-3 py-1 rounded-xl ${darkMode ? 'bg-dark-main text-dark-text' : 'bg-light-main text-white'} transition-colors`}>programadores</div>
 									</div>
 								</h1>
-								<p className={`text-center ${darkMode ? 'text-dark-text' : 'text-neutral-700'} max-w-xs sm:text-left sm:max-w-2xl sm:text-xl 2xl:text-2xl font-light`}>Cambios</p>
+								<p className={`text-center ${darkMode ? 'text-dark-text' : 'text-neutral-700'} max-w-xs sm:text-left sm:max-w-2xl sm:text-xl 2xl:text-2xl font-light`}>Trabajamos tu idea y la desarrollamos paso a paso buscando la perfección en cada píxel y en cada línea de código. Jugamos con la fina línea entre estética y usabilidad.</p>
 							</div>
 						</div>
 						<div className="text-center sm:text-left lazy-load-2 max-w-[10rem] 2xl:max-w-[12rem]">
