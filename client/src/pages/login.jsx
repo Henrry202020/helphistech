@@ -1,7 +1,7 @@
 // Nextjs
 import Image from "next/image"
 // Components
-import LoginForm from "@/components/de/login/LoginForm"
+import LoginForm from "@/components/login/LoginForm"
 // Hooks
 import useContextProvider from "@/hooks/useAppContextProvider"
 import Head from "next/head";
