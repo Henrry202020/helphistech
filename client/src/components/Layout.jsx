@@ -1,19 +1,15 @@
 import Head from "next/head";
 // DE Components
-import NavbarDE from "./de/Navbar";
-import FooterDE from "./de/Footer";
-import ProjectQuoteDE from "./de/ProjectQuote";
+import NavbarDE from "./Navbar";
+import FooterDE from "./Footer";
 // EN Components
 import NavbarEN from "./en/Navbar";
 import FooterEN from "./en/Footer";
-import ProjectQuoteEN from "./en/ProjectQuote";
 // ES Components
 import NavbarES from "./es/Navbar";
 import FooterES from "./es/Footer";
-import ProjectQuoteES from "./es/ProjectQuote";
 // Hooks
 import useContextProvider from "@/hooks/useAppContextProvider";
-import { useEffect } from "react";
 
 export default function Layout({ title, children }) {
 
@@ -25,27 +21,17 @@ export default function Layout({ title, children }) {
             <Head>
                 <title>Helphis Tech | {title}</title>
             </Head>
-            <div className={`${darkMode ? 'bg-darkmode' : 'bg-white'} transition-colors`}>
-                <div>
-                    { language == 'de' && <NavbarDE /> }
-                    { language == 'en' && <NavbarEN /> }
-                    { language == 'es' && <NavbarES /> }
-                </div>
-                <div>
-                    {children}
-                    {showProjectQuote && (
-                        <>
-                            { language == 'de' && <ProjectQuoteDE /> }
-                            { language == 'en' && <ProjectQuoteEN /> }
-                            { language == 'es' && <ProjectQuoteES /> }
-                        </>
-                    )}
-                </div>
-                <div>
-                    { language == 'de' && <FooterDE /> }
-                    { language == 'en' && <FooterEN /> }
-                    { language == 'es' && <FooterES /> }
-                </div>
+            <div className={`${darkMode ? 'bg-darkmode text-zinc-200' : 'bg-white text-black'} transition-colors`}>
+                {/* Navbar */}
+                { language == 'de' && <NavbarDE /> }
+                { language == 'en' && <NavbarEN /> }
+                { language == 'es' && <NavbarES /> }
+                {/* Page content */}
+                {children}
+                {/* Footer */}
+                { language == 'de' && <FooterDE /> }
+                { language == 'en' && <FooterEN /> }
+                { language == 'es' && <FooterES /> }
             </div>
         </>
     )

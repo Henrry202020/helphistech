@@ -1,8 +1,7 @@
 // Next
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/router";
-// Components
-import Button from "../Button";
 // Hooks
 import useContextProvider from "../../hooks/useAppContextProvider";
 import { useEffect, useState } from "react";
@@ -27,7 +26,7 @@ export default function Navbar() {
     }
 
     // Get functions and variables from context
-    const { darkMode, handleDarkMode, language, setLanguage, showProjectQuote, handleShowProjectQuote } = useContextProvider();
+    const { darkMode, handleDarkMode, language, setLanguage } = useContextProvider();
     
     const router = useRouter();
 
@@ -38,62 +37,78 @@ export default function Navbar() {
         router.push(`/${language}`)
     }
 
-    function handleScrollTo(id) {
-        document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-    }
-
     return(
         <>
-            <header className={`flex flex-col gap-2 justify-center h-20 lg:h-24 2xl:h-28 px-3 sm:px-10 border-b ${darkMode ? 'border-neutral-900' : 'border-zinc-200'} sm:border-none transition-colors`}>
-                <nav className="flex flex-row gap-0 items-center justify-between w-full">
-                    <div className={`${showProjectQuote ? 'invisible' : 'visible'} transition-colors`}>
+            <header className="flex flex-col">
+                <div className={`flex items-center justify-between h-20 px-10 text-${darkMode ? 'dark' : 'light'}`}>
+                    <div>
                         <Link href={"/"}>
-                            <div className={`uppercase font-bold text-2xl text-light-main`}>Helphis Tech</div>
+                            <Image className="w-auto h-12" src={`/logo/${darkMode ? 'dark' : 'light'}/full-logo.webp`} width={460} height={113} alt="HelphisTech brand logo" />
                         </Link>
                     </div>
-                    <button className={`block md:hidden text-2xl ${darkMode ? 'text-white' : 'text-black'}`} onClick={handleShowMenu}>
-                        <i className="fa-solid fa-bars"></i>
-                    </button>
-                    <div className={`hidden md:flex flex-row items-center gap-5 ${showProjectQuote ? 'hidden' : 'block'}`}>
-                        <div className="flex items-center gap-3">
-                            <div onClick={handleDarkMode} className={`text-2xl cursor-pointer ${darkMode ? 'text-dark-text' : 'text-black'} transition-colors`}>
-                                { darkMode == 'dark' ? (
-                                    <i className="fa-solid fa-sun"></i>
-                                ) : (
-                                    <i className="fa-solid fa-moon"></i>
-                                )}
-                            </div>
-                            <div className="text-xl">
-                                <select className={`cursor-pointer ${darkMode ? 'text-dark-text' : 'text-black'} bg-transparent transition-colors`} onChange={handleChangeLanguage} name="" id="" value={language}>
+                    <nav className="hidden xl:flex items-center gap-5 font-light text-lg">
+                        <Link href={"#"}>
+                            <span className="hover:underline hover:text-primary transition-colors">Home</span>
+                        </Link>
+                        <Link href={"#"} >
+                            <span className="hover:underline hover:text-primary transition-colors">Our services</span>
+                        </Link>
+                        <Link href={"#"} >
+                            <span className="hover:underline hover:text-primary transition-colors">Our projects</span>
+                        </Link>
+                        <Link href={"#"} >
+                            <span className="hover:underline hover:text-primary transition-colors">Our technologies</span>
+                        </Link>
+                    </nav>
+                    <div className="hidden sm:flex items-center gap-3">
+                        <div onClick={handleDarkMode} className={`text-2xl cursor-pointer transition-colors`}>
+                            { darkMode ? (
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+                                </svg>
+                                
+                            ) : (
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+                                </svg>
+
+                            )}
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <div className="text-lg">
+                                <select className="cursor-pointer bg-transparent outline-none" name="" id="" value={language} onChange={(e) => handleChangeLanguage(e.target.value)}>
                                     <option value="de">DE</option>
                                     <option value="en">EN</option>
                                     <option value="es">ES</option>
                                 </select>
                             </div>
                         </div>
-                        <Button properties={{ 
-                            classes: "py-2 px-4 w-fit 2xl:text-2xl 2xl:px-6 2xl:py-3", 
-                            handler: { action: handleShowProjectQuote } 
-                        }}>Quote your project</Button>
+                        <Link href={"/project-quote"}>
+                            <button className="btn-primary py-2 px-4 uppercase font-medium text-white bg-primary hover:bg-primary-2 transition-colors rounded-sm">
+                                <span>Contact us</span>
+                            </button>
+                        </Link>
                     </div>
-                </nav>
-                <div className="hidden lg:flex justify-center items-center gap-5 uppercase font-medium">
-                    <div 
-                        className={`${darkMode ? 'text-dark-text hover:text-dark-main' : 'text-black hover:text-light-main'} cursor-pointer transition-colors`} 
-                        onClick={() => handleScrollTo('index_section_home')}>Home</div>
-                    <div 
-                        className={`${darkMode ? 'text-dark-text hover:text-dark-main' : 'text-black hover:text-light-main'} cursor-pointer transition-colors`} 
-                        onClick={() => handleScrollTo('index_section_consult')}>What we can do</div>
-                    <div 
-                        className={`${darkMode ? 'text-dark-text hover:text-dark-main' : 'text-black hover:text-light-main'} cursor-pointer transition-colors`} 
-                        onClick={() => handleScrollTo('index_section_ourjobs')}>Our jobs</div>
-                    <div 
-                        className={`${darkMode ? 'text-dark-text hover:text-dark-main' : 'text-black hover:text-light-main'} cursor-pointer transition-colors`} 
-                        onClick={() => handleScrollTo('index_section_technologies')}>Technologies</div>
-                    <div 
-                        className={`${darkMode ? 'text-dark-text hover:text-dark-main' : 'text-black hover:text-light-main'} cursor-pointer transition-colors`} 
-                        onClick={() => handleScrollTo('index_section_startmyproject')}>Start my project</div>
+                    <div onClick={handleShowMenu} className="block sm:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-9 h-9">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        </svg>
+                    </div>
                 </div>
+                <nav className={`hidden sm:flex xl:hidden items-center justify-center gap-5 font-light text-lg ${darkMode ? 'font-light' : 'font-normal'}`}>
+                    <Link href={"#"}>
+                        <span className="hover:underline hover:text-primary transition-colors">Home</span>
+                    </Link>
+                    <Link href={"#"}>
+                        <span className="hover:underline hover:text-primary transition-colors">Our services</span>
+                    </Link>
+                    <Link href={"#"}>
+                        <span className="hover:underline hover:text-primary transition-colors">Our projects</span>
+                    </Link>
+                    <Link href={"#"}>
+                        <span className="hover:underline hover:text-primary transition-colors">Our technologies</span>
+                    </Link>
+                </nav>
             </header>
             { showMenu && (
                 <NavbarMobileMenu 
@@ -126,55 +141,59 @@ function NavbarMobileMenu({ closeAnimation, closeMenu }) {
     return (
         <>
             <div className="fixed top-0 left-0 w-screen h-screen bg-black opacity-60" onClick={closeMenu}></div>
-            <div className={`${closeAnimation ? 'full-screen-menu-close' : 'full-screen-menu-open'} fixed top-0 right-0 w-[85vw] h-screen ${darkMode ? 'bg-darkmode text-dark-text border-l border-neutral-900' : 'bg-white text-black'} shadow-lg transition-colors`}>
+            <div className={`${closeAnimation ? 'full-screen-menu-close' : 'full-screen-menu-open'} fixed top-0 right-0 w-[85vw] h-screen ${darkMode ? 'bg-darkmode text-dark-text border-l border-neutral-900' : 'bg-white text-black'} shadow-lg transition-colors z-10`}>
                 <div className={`${closeAnimation ? 'hidden' : null} h-full lazy-load-1`}>
-                    <button onClick={closeMenu} className="absolute top-4 right-5 text-3xl">
-                        <i className="fa-solid fa-xmark"></i>
-                    </button>
-                    <div className="flex flex-col justify-between items-center gap-10 h-full mx-auto py-16">
+                    <div className="flex items-center justify-between absolute top-4 left-4 right-4">
+                        <Image src={darkMode ? '/logo/dark/logo.webp' : '/logo/light/logo.webp'} width={50} height={50} alt="HelphisTech Logo" />
+                        <button onClick={closeMenu} className="text-3xl">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-8 h-8">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div className="flex flex-col justify-between items-center gap-10 h-full mx-auto pt-24 pb-16">
                         <div className="flex flex-col items-center gap-10 w-full px-6">
-                            {/* <Link href={"/"}>
-                                <div className={`uppercase font-bold text-2xl text-white`}>Helphis Tech</div>
-                            </Link> */}
                             <div className={`flex flex-col text-xl ${darkMode ? 'font-normal' : 'font-medium'} items-start gap-5 w-full`}>
-                                <div 
-                                    className="" 
-                                    onClick={() => handleScrollTo('index_section_home')}>Home</div>
-                                <div 
-                                    className="" 
-                                    onClick={() => handleScrollTo('index_section_consult')}>What we can do</div>
-                                <div 
-                                    className="" 
-                                    onClick={() => handleScrollTo('index_section_ourjobs')}>Our jobs</div>
-                                <div 
-                                    className="" 
-                                    onClick={() => handleScrollTo('index_section_technologies')}>Technologies</div>
-                                <div 
-                                    className="" 
-                                    onClick={() => handleScrollTo('index_section_startmyproject')}>Start my project</div>
+                                <Link href={"#"}>
+                                    <span className="hover:underline hover:text-primary transition-colors">Home</span>
+                                </Link>
+                                <Link href={"#"} >
+                                    <span className="hover:underline hover:text-primary transition-colors">Our services</span>
+                                </Link>
+                                <Link href={"#"} >
+                                    <span className="hover:underline hover:text-primary transition-colors">Our projects</span>
+                                </Link>
+                                <Link href={"#"} >
+                                    <span className="hover:underline hover:text-primary transition-colors">Our technologies</span>
+                                </Link>
                             </div>
                         </div>
                         <div className="flex flex-col gap-5 items-center">
                             <div className="flex items-center gap-6">
                                 <div onClick={handleDarkMode} className={`text-2xl cursor-pointer transition-colors`}>
-                                    { darkMode == 'dark' ? (
-                                        <i className="fa-solid fa-sun"></i>
+                                    { darkMode ? (
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+                                        </svg>
+                                      
                                     ) : (
-                                        <i className="fa-solid fa-moon"></i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+                                        </svg>
+
                                     )}
                                 </div>
                                 <div className="text-xl">
-                                    <select className={`cursor-pointer bg-transparent text-black bg-white rounded-md px-2 py-1`} onChange={handleChangeLanguage} name="" id="" value={language}>
+                                    <select className={`cursor-pointer bg-transparent ${darkMode ? 'text-white' : 'text-black'}`} onChange={handleChangeLanguage} name="" id="" value={language}>
                                         <option value="de">DE</option>
                                         <option value="en">EN</option>
                                         <option value="es">ES</option>
                                     </select>
                                 </div>
                             </div>
-                            <Button properties={{ 
-                                classes: "w-fit text-2xl px-6 py-3", 
-                                handler: { action: handleShowProjectQuote } 
-                            }}>Quote your project</Button>
+                            <Link href={'/project-quote'}>
+                                <button className={`btn-primary py-2 px-6 bg-primary hover:bg-primary-2 text-white transition-colors`}>Contact us</button>
+                            </Link>
                         </div>
                     </div>
                 </div>

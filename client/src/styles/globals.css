@@ -13,8 +13,49 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-	font-family: 'Outfit', sans-serif;
+	font-family: 'Poppins', sans-serif;
+}
+
+h1, h2, h3, h4, p, span, div {
+	transition: color 50ms;
+} 
+
+/* DARKMODE */
+.text-dark {
+	color: rgb(240 240 240);
+}
+.title-dark {
+	color: rgb(228 228 231);
+}
+.subtitle-dark {
+	color: rgb(161 161 170);
+}
+.description-dark {
+	color: rgb(161 161 170);
+}
+.section-bg-dark {
+	background: #070709;
+}
+/* LIGHTMODE */
+.text-light {
+	color: rgb(10, 10, 10);
+}
+.title-light {
+	color: rgb(20, 20, 20);
+}
+.subtitle-light {
+	color: rgb(45, 45, 45);
+}
+.description-light {
+	color: rgb(45, 45, 45);
+}
+.section-bg-light {
+	background: #EEEEF3;
 }
 
 img {
@@ -38,18 +79,18 @@ img {
   
 /* Scrollbar Handle */
 ::-webkit-scrollbar-thumb {
-	background: rgb(99 102 241);
+	background: #866bfe;
 }
 
 /* Text selection */
 ::-moz-selection { /* Code for Firefox */
 	color: white;
-	background: rgb(99 102 241);
+	background: #5a43be;
 }
   
 ::selection {
 	color: white;
-	background: rgb(99 102 241);
+	background: #866bfe;
 }
 
 /* Remove autofull background on inputs */
@@ -58,6 +99,78 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus, 
 input:-webkit-autofill:active{
     -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+#hero {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+select option {
+    color: white;
+    background: black;
+}
+
+button.btn-primary {
+    box-shadow: 0px 0px 20px rgb(134 107 254 / .3);
+}
+
+button.btn-primary:hover {
+    box-shadow: 0px 0px 20px rgb(90 67 190 / .3);
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.hide-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scroll {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.blur-shadow {
+    position: absolute;
+    width: 25rem;
+    height: 18rem;
+    box-shadow: 10px 10px 200px rgb(134 107 254 / .2);
+    background: rgb(134 107 254 / .2);
+    border-radius: 50%;
+    filter: blur(100px);
+}
+
+.dropdown-description-show {
+    animation-name: dropdown-description-show;
+    animation-duration: .4s;
+}
+
+.dropdown-description-hide {
+    animation-name: dropdown-description-hide;
+    animation-duration: .25s;
+}
+
+@keyframes dropdown-description-show {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes dropdown-description-hide {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(50px);
+    }
 }
 
 .text-gradient {

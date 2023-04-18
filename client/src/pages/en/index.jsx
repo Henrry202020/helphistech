@@ -1,217 +1,245 @@
+import { useRef, useState } from "react";
+// Nextjs
 import Image from "next/image";
+import Head from "next/head";
 import Link from "next/link";
-// Youtube videos
-import Youtube from 'react-youtube'
-// Components
-import Button from "@/components/Button";
-import Layout from "@/components/Layout";
-// Hooks
+// Context
 import useContextProvider from "@/hooks/useAppContextProvider";
-// Swiper Slider
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation } from "swiper";
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
+// Components
+import Navbar from "@/components/en/Navbar";
+import Footer from "@/components/en/Footer";
 
-export default function ENGHome() {
+export default function Home() {
 
-	// Get functions and variables from context
-	const { darkMode, handleShowProjectQuote } = useContextProvider();
+    // Get functions and variables from context
+	const { darkMode } = useContextProvider();
 
 	return (
-		<Layout title="Home">
-			<div className="flex items-center justify-center sm:justify-start max-w-6xl 2xl:max-w-[90rem] mx-auto pb-16 px-6 md:px-10 min-h-[65rem] lg:min-h-[40rem]" style={{height: 'calc(100vh - 5rem)'}} id="index_section_home">
-				<div className="flex flex-col lg:flex-row items-center gap-10 w-full lazy-load-1">
-					<div className="flex flex-col items-center gap-12">
-						<div className="flex items-center">
-							<div className="flex flex-col gap-5">
-								<h1 className={`flex flex-col gap-3 items-center sm:items-start sm:gap-5 text-center sm:text-left text-3xl sm:text-4xl md:text-5xl 2xl:text-6xl uppercase font-extrabold max-w-3xl ${darkMode ? 'text-dark-main' : 'text-light-main'} transition-colors`}>
-								<div className="flex items-center gap-2">
-									<div className={`px-3 py-1 rounded-xl ${darkMode ? 'bg-dark-main text-dark-text' : 'bg-light-main text-white'} transition-colors`}>We are</div>
-									<div>a</div>
-									</div>
-									<div className="flex flex-col sm:flex-row items-center sm:items-start gap-2 w-fit">
-										<div className={`px-3 py-1 rounded-xl ${darkMode ? 'bg-dark-main text-dark-text' : 'bg-light-main text-white'} transition-colors`}>professional</div>
-										<div className="hidden sm:block">team</div>
-									</div>
-									<div className="block sm:hidden">team of</div>
-									<div className="flex flex-col sm:flex-row items-center sm:items-start gap-2 w-fit">
-										<div className="hidden sm:block">of</div>
-										<div className={`px-3 py-1 rounded-xl ${darkMode ? 'bg-dark-main text-dark-text' : 'bg-light-main text-white'} transition-colors`}>developers</div>
-									</div>
-								</h1>
-								<p className={`text-center ${darkMode ? 'text-dark-text' : 'text-neutral-700'} max-w-xs sm:text-left sm:max-w-2xl sm:text-xl 2xl:text-2xl font-light`}>We work on your idea and develop it step by step looking for perfection in each pixel and each line of code. We play with the fine line between aesthetics and usability.</p>
+		<>
+			<Head>
+				<title>Webseiten | HelphisTech</title>
+			</Head>
+			<main className={darkMode ? 'bg-black text-zinc-200' : 'bg-white text-black'}>
+				<div className={`${darkMode ? 'bg-hero-dark' : 'bg-hero-light'}`} id="hero">
+					<Navbar />
+					<section className="flex items-center justify-center xl:px-20 2xl:px-0 min-h-[75rem] xl:min-h-0 lazy-load-1" style={{height: 'calc(100vh - 5rem)'}}>
+						<div className="max-w-7xl flex flex-col xl:flex-row items-center gap-12 w-full">
+							<div className="flex flex-col gap-10 text-center xl:text-left xl:max-w-[33rem] 2xl:max-w-[37rem] px-20 xl:px-0">
+								<div className={`flex flex-col gap-5`}>
+									<h1 className={`${darkMode ? 'title-dark' : 'title-light'} text-6xl 2xl:text-7xl font-bold leading-[5rem] 2xl:leading-[5.5rem]`}>Custom web development for your business</h1>
+									<p className={`${darkMode ? 'description-dark font-light' : 'description-light'} 2xl:text-lg`}>We offer customized solutions to help your business stand out online. From website design and development to app programming and search engine optimization, our team of experts can help you achieve your online goals.</p>
+								</div>
+								<div className="flex justify-center xl:justify-start">
+									<Link href={"/project-quote"}>
+										<button className="btn-primary text-white uppercase w-fit py-4 px-8 font-medium bg-primary hover:bg-primary-2 transition-colors 2xl:text-lg rounded-sm">
+											<span>Start a project with us</span>
+										</button>
+									</Link>
+								</div>
+							</div>
+							<div className="">
+								<VideoPlayer 
+									url={"https://res.cloudinary.com/drdor2wz7/video/upload/v1681591174/helphistech_eynapv.mp4"} 
+								/>
 							</div>
 						</div>
-						<div className="text-center sm:text-left lazy-load-2 max-w-[10rem] 2xl:max-w-[12rem]">
-							<Button properties={{
-								classes: 'py-2 px-4 text-lg 2xl:text-2xl 2xl:py-3',
-								handler: { action: handleShowProjectQuote }
-							}}>Contact</Button>
+					</section>
+				</div>
+				<section className={`px-20 2xl:px-0 ${darkMode ? 'section-bg-dark' : 'section-bg-light'} py-28 overflow-hidden lazy-load-1`} id="our-services">
+					<div className="max-w-7xl mx-auto z-10 relative">
+						<div className="flex items-center gap-20 justify-between w-full">
+							<div className="blur-shadow -left-28 -top-28"></div>
+							<div className="flex flex-col gap-20">
+								<div className="flex flex-col gap-5 relative">
+									<div className="flex flex-col">
+										<h4 className={`uppercase font-semibold ${darkMode ? 'subtitle-dark' : 'subtitle-light'}`}>Our services</h4>
+									</div>
+									<div className="flex items-start gap-20">
+										<div>
+											<h2 className={`flex flex-col gap-5 text-5xl font-bold whitespace-nowrap ${darkMode ? 'title-dark' : 'title-light'}`}>
+												<div>What <span className="text-primary">Services</span></div>
+												<div>{"We're Offering"}</div>
+											</h2>
+										</div>
+										<div className={`flex flex-col gap-5 ${darkMode ? 'description-dark font-light' : 'description-light'}`}>
+											<p>At HelphisTech, we offer a wide range of web development services to help businesses create a strong online presence and achieve their digital goals. Our team of experienced developers is skilled in creating custom websites, web applications, and e-commerce platforms that are tailored to meet the unique needs of each client.</p>
+											{/* We use the latest technologies and industry best practices to ensure that our projects are of the highest quality, and we work closely with our clients to ensure that they are satisfied with the final product. */}
+										</div>
+									</div>
+								</div>
+								<div className={`flex flex-col divide-y`}>
+									<ServicesOption
+										title={"Custom Website Development"}
+										description={"We specialize in creating custom websites that are designed to meet the specific needs of our clients. Our websites are responsive, user-friendly, and optimized for search engines to ensure maximum visibility."}
+									/>
+									<ServicesOption
+										title={"Web Application Development"}
+										description={"We can develop complex web applications that are designed to streamline your business processes and improve efficiency. Our team has expertise in various programming languages and frameworks, including React, Angular, and Node."}
+									/>
+									<ServicesOption
+										title={"E-Commerce Development"}
+										description={"We can create custom e-commerce platforms that are designed to help businesses sell their products and services online. Our e-commerce websites are secure, easy to use, and can integrate with popular payment gateways such as PayPal and Stripe."}
+									/>
+									<ServicesOption
+										title={"Website Maintenance and Support"}
+										description={"We provide ongoing maintenance and support for all of our websites and web applications. Our team is available to troubleshoot any issues that may arise and to ensure that your website is always up-to-date and running smoothly."}
+									/>
+								</div>
+								<Link className="flex justify-center" href={"#"}>
+									<button className="flex items-center gap-2 text-primary hover:text-primary-2 transition-colors">
+										<div>See more</div>
+										<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+											<path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+										</svg>
+									</button>
+								</Link>
+							</div>
 						</div>
 					</div>
-					<div className="flex flex-col gap-3 w-full">
-						<Youtube videoId="lhfU7j50bWk" className="" iframeClassName="w-full rounded-xl" />
-						<Link className={`flex justify-center items-center gap-2 ${darkMode ? 'text-dark-text hover:text-light-main' : 'text-black hover:text-dark-main'} transition-colors`} target="_blank" href={"https://www.youtube.com/watch?v=lhfU7j50bWk"}>
-							<span>Watch on YouTube</span> 
-							<i className="fa-regular fa-arrow-up-right-from-square"></i>
+				</section>
+				<section className={`relative overflow-hidden ${darkMode ? 'section-bg-dark border-[#19191F]' : 'section-bg-light border-zinc-300'} flex items-center py-28 px-20 2xl:px-0 border-t lazy-load-1`} id="our-technologies">
+					<div className="blur-shadow -top-6 -left-6"></div>
+					<div className="flex flex-col gap-20 overflow-hidden">
+						<div className="flex flex-col gap-4 text-white relative">
+							<div className="flex flex-col gap-3">
+								<h4 className={`uppercase font-semibold ${darkMode ? 'subtitle-dark' : 'subtitle-light'}`}>Our technologies</h4>
+								<h2 className={`flex flex-col gap-5 text-5xl font-bold whitespace-nowrap ${darkMode ? 'title-dark' : 'title-light'}`}>
+									<div>These are the <span className="text-primary">Technologies</span></div> 
+									<div>we use the most</div>
+								</h2>
+							</div>
+							<div className={`2xl:text-lg ${darkMode ? 'description-dark font-light' : 'description-light'}`}>
+								<p>The appropriate technology enriches the project. Here are some of the ones we use the most:</p>
+							</div>
+						</div>
+						<div className="overflow-x-scroll hide-scroll">
+							<div className="grid grid-cols-5 gap-y-10 gap-x-14 xl:gap-x-28 select-none min-w-[60rem]">
+								<TechnologyImage src={"/technologies/react.webp"} alt={"React technology image"} />
+								<TechnologyImage src={"/technologies/nextjs.webp"} alt={"Next js technology image"} darkmode={"/technologies/darkmode/nextjs.webp"} />
+								<TechnologyImage src={"/technologies/angular.webp"} alt={"Angular technology image"} />
+								<TechnologyImage src={"/technologies/vuejs.webp"} alt={"Vue technology image"} />
+								<TechnologyImage src={"/technologies/astro.webp"} alt={"Astro technology image"} darkmode={"/technologies/darkmode/astro.webp"} />
+								<TechnologyImage src={"/technologies/tailwind.webp"} alt={"Tailwind technology image"} />
+								<TechnologyImage src={"/technologies/nodejs.webp"} alt={"Node js technology image"} darkmode={"/technologies/darkmode/nodejs.webp"} />
+								<TechnologyImage src={"/technologies/mongodb.webp"} alt={"MongoDB technology image"} />
+								<TechnologyImage src={"/technologies/mysql.webp"} alt={"MySQL technology image"} />
+								<TechnologyImage src={"/technologies/socketio.webp"} alt={"Socket.io technology image"} darkmode={"/technologies/darkmode/socketio.webp"} />
+							</div>
+						</div>
+						<Link className="flex justify-center" href={"#"}>
+							<button className="flex items-center gap-2 text-primary hover:text-primary-2 transition-colors">
+								<div>See more</div>
+								<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+									<path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+								</svg>
+							</button>
 						</Link>
 					</div>
-				</div>
-			</div>
-			<div className={`lazy-load-2`} id="index_section_consult">
-				<div className="flex flex-col gap-20 justify-center max-w-6xl 2xl:max-w-[90rem] mx-auto px-6 md:px-10 lg:px-20 py-20">
-					<div className={`flex flex-col sm:flex-row justify-center items-center gap-2 text-3xl sm:text-4xl md:text-5xl 2xl:text-6xl font-bold uppercase`}>
-						<div className={`${darkMode ? 'text-dark-main' : 'text-light-main'}`}>What we</div>
-						<div className={`${darkMode ? 'text-dark-text bg-dark-main' : 'text-white bg-light-main'} w-fit px-3 py-1 rounded-lg`}>can do</div>
-					</div>
-					<div className="">
-						<Swiper 
-							slidesPerView={1}
-							spaceBetween={30}
-							loop={true}
-							pagination={{
-								clickable: true,
-							}}
-							navigation={true}
-							modules={[Pagination, Navigation]}
-							className="mySwiper rounded-lg shadow-md"
-						>
-							<SwiperSlide className="select-none rounded-lg">
-								<Image className="rounded-lg shadow-md" src={"/otherprojects/1.png"} width={1920} height={1080} alt="What we can do image 1" />
-							</SwiperSlide>
-							<SwiperSlide className="select-none rounded-lg">
-								<Image className="rounded-lg shadow-md" src={"/otherprojects/2.png"} width={1920} height={1080} alt="What we can do image 2" />
-							</SwiperSlide>
-							<SwiperSlide className="select-none rounded-lg">
-								<Image className="rounded-lg shadow-md" src={"/otherprojects/3.png"} width={1920} height={1080} alt="What we can do image 3" />
-							</SwiperSlide>
-							<SwiperSlide className="select-none rounded-lg">
-								<Image className="rounded-lg shadow-md" src={"/otherprojects/4.png"} width={1920} height={1080} alt="What we can do image 4" />
-							</SwiperSlide>
-						</Swiper>
-					</div>
-				</div>
-			</div>
-			{/* <div className={`${darkMode ? 'bg-dark-main text-dark-text' : 'bg-light-main text-white'} lazy-load-2`} id="index_section_consult">
-				<div className="flex flex-col items-center justify-center gap-12 max-w-6xl 2xl:max-w-[90rem] mx-auto px-6 md:px-10 lg:px-20 min-h-[35rem] 2xl:min-h-[40rem]">
-					<div className="flex flex-col items-center gap-8 text-center">
-						<h2 className="uppercase text-4xl md:text-5xl 2xl:text-6xl font-extrabold">We advise you</h2>
-						<p className="text-xl 2xl:text-2xl max-w-4xl">We listen to our clients to fully understand the needs of each project. We generate our own recommendations to define a solution aligned to the business objectives.</p>
-					</div>
-					<button onClick={handleShowProjectQuote} className="py-2 2xl:py-3 w-1/3 rounded-xl uppercase font-semibold text-lg 2xl:text-2xl bg-white text-light-main border-2 border-white hover:bg-transparent hover:text-white transition-colors select-none">Consult</button>
-				</div>
-			</div> */}
-			<div className={`${darkMode ? 'text-dark-text' : 'text-black'} flex flex-col justify-center gap-20 max-w-6xl 2xl:max-w-[90rem] mx-auto px-6 md:px-10 lg:px-20 lazy-load-3 py-20`} id="index_section_ourjobs">
-				{/* <div className="font-extrabold text-5xl uppercase text-light-main">Algo de lo que hemos hecho</div> */}
-				<div className="flex flex-col sm:flex-row justify-center items-center gap-4 text-3xl sm:text-4xl md:text-5xl 2x:text-6xl font-extrabold uppercase">
-					<div className={`${darkMode ? 'text-dark-main' : 'text-light-main'}`}>Our</div>
-					<div className={`${darkMode ? 'bg-dark-main text-dark-text' : 'bg-light-main text-white'} px-2 py-1 sm:px-3 sm:py-2 rounded-lg w-fit`}>
-						<span>Jobs</span>
-					</div>
-				</div>
-				<div className="grid grid-cols-1 items-center gap-16">
-					<Project 
-						name={"Evolution"}
-						description={"Buy, trade and hold cryptocurrencies at Evolution. Evolution is the easiest place to buy and sell cryptocurrency."}
-						image={"/projects/evolution.png"}
-						link={"https://evolution-react.vercel.app"}
-						side={"left"}
-					/>
-					<Project 
-						name={"Haikei"}
-						description={"Generate unique SVG design assets. Haikei is a web app to generate stunning visual content – ready to use with your design tools and workflow."}
-						image={"/projects/haikei.png"}
-						link={"https://haikei.app"}
-						side={"right"}
-					/>
-					<Project 
-						name={"Railway"}
-						description={"Bring your code, we'll handle the rest. Made for any language, for projects big and small. Railway is the cloud that takes the complexity out of shipping software."}
-						image={"/projects/railway.png"}
-						link={"https://railway.app"}
-						side={"left"}
-					/>
-				</div>
-			</div>
-			<div className="flex items-center max-w-6xl 2xl:max-w-[90rem] mx-auto px-6 md:px-10 lg:px-20 min-h-[45rem] sm:min-h-[42rem] 2xl:min-h-[47rem] lazy-load-4 py-20" id="index_section_technologies">
-				<div className="flex flex-col gap-20 overflow-hidden">
-					<div className="flex flex-col gap-5">
-						<div className="flex flex-col sm:flex-row sm:justify-center items-center gap-4 text-3xl sm:text-4xl md:text-5xl 2x:text-6xl font-extrabold uppercase">
-							<div className={`${darkMode ? 'text-dark-main' : 'text-light-main'}`}>Main</div>
-							<div className={`${darkMode ? 'bg-dark-main text-dark-text' : 'bg-light-main text-white'} px-2 py-1 sm:px-3 sm:py-2 rounded-lg w-fit`}>
-								<span>Technologies</span>
-							</div>
+				</section>
+				<section className="flex flex-col gap-16 py-28 text-center lazy-load-1" id="index_section_startmyproject">
+					<div className="flex flex-col gap-8">
+						<div className={`${darkMode ? 'subtitle-dark' : 'subtitle-light'} text-lg uppercase font-semibold`}>
+							<span>Do you have an idea?</span>
 						</div>
-						<div className={`text-lg ${darkMode ? 'text-dark-text' : 'text-light-description'} 2xl:text-xl text-center`}>
-							<p>The appropriate technology enriches the project.<br/> Here are some of the ones we use the most:</p>
+						<div className="w-2/3 2xl:w-2/4 mx-auto">
+							<h2 className={`${darkMode ? 'title-dark' : 'title-light'} text-[2.25rem] sm:text-[3rem] md:text-[3.75rem] lg:text-[4.5rem] font-semibold`}>We only need an idea or a problem for us to carry out your project</h2>
 						</div>
 					</div>
-					<div className="overflow-x-scroll">
-						<div className="grid grid-cols-5 gap-10 select-none min-w-[60rem]">
-							<TechnologyImage src={"/technologies/react.png"} alt={"React technology image"} />
-							<TechnologyImage src={"/technologies/nextjs.png"} alt={"Next js technology image"} darkmode={"/technologies/darkmode/nextjs.png"} />
-							<TechnologyImage src={"/technologies/angular.png"} alt={"Angular technology image"} />
-							<TechnologyImage src={"/technologies/vue.png"} alt={"Vue technology image"} />
-							<TechnologyImage src={"/technologies/astro.png"} alt={"Astro technology image"} darkmode={"/technologies/darkmode/astro.png"} />
-							<TechnologyImage src={"/technologies/tailwind.png"} alt={"Tailwind technology image"} />
-							<TechnologyImage src={"/technologies/nodejs.png"} alt={"Node js technology image"} />
-							<TechnologyImage src={"/technologies/mongodb.png"} alt={"MongoDB technology image"} />
-							<TechnologyImage src={"/technologies/mysql.png"} alt={"MySQL technology image"} />
-							<TechnologyImage src={"/technologies/socketio.png"} alt={"Socket.io technology image"} darkmode={"/technologies/darkmode/socketio.png"} />
-						</div>
+					<div className="cursor-pointer border-b-2 border-primary text-primary hover:border-white hover:text-white transition-colors w-fit mx-auto pb-1">
+						<button className="text-2xl transition-colors font-semibold" onClick={null}>Start your project</button>
 					</div>
+				</section>
+				<Footer />
+			</main>
+		</>
+	)
+}
+
+function VideoPlayer({ url }) {
+
+	// Hero section video
+	const video = useRef(null);
+	const [ paused, setPaused ] = useState(true);
+
+	function handlePlayVideo() {
+		if(video.current.paused) {
+			setPaused(false);
+			video.current.play();
+		} else {
+			setPaused(true);
+			video.current.pause();
+		}
+	}
+
+	return (
+		<div className="relative cursor-pointer xl:rounded-md" onClick={handlePlayVideo}>
+			<div className={`${paused ? 'block' : 'hidden'}`}>
+				<div className={`absolute top-0 left-0 w-full h-full bg-black opacity-70 xl:rounded-md`}></div>
+				<div className={`absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2`}>
+					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={.7} stroke="currentColor" className="w-20 h-20 text-zinc-300">
+						<path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+						<path strokeLinecap="round" strokeLinejoin="round" d="M15.91 11.672a.375.375 0 010 .656l-5.603 3.113a.375.375 0 01-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112z" />
+					</svg>
+
 				</div>
 			</div>
-			<div className="flex flex-col gap-16 bg-black py-28 text-center lazy-load-4 border-t border-neutral-900" id="index_section_startmyproject">
-				<div className="flex flex-col gap-8">
-					<div className="text-neutral-400 text-lg uppercase font-semibold">Do you have an idea?</div>
-					<div className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold w-2/3 2xl:w-2/4 mx-auto">We only need an idea or a problem for us to carry out your project</div>
-				</div>
-				<div className="cursor-pointer border-b-2 border-light-main text-light-main hover:border-white hover:text-white transition-colors w-fit mx-auto pb-1">
-					<button className="text-2xl transition-colors font-semibold" onClick={handleShowProjectQuote}>Start your project</button>
-				</div>
+			<video ref={video} className="xl:rounded-md" width="100%" height="auto" loop controls controlsList="nofullscreen nodownload noremoteplayback noplaybackrate foobar" poster="/home/hero/video-preview/preview.webp">
+				<source src={url} type="video/mp4" />
+			</video>
+		</div>
+	)
+}
+
+function ServicesOption({ title, description, href }) {
+
+    // Get functions and variables from context
+	const { darkMode } = useContextProvider();
+
+	const [ showDescription, setShowDescription ] = useState(false);
+	const [ closeDropdown, setCloseDropdown ] = useState(false);
+
+	function handleShowDescription() {
+		if(showDescription) {
+			setCloseDropdown(true);
+			setTimeout(() => {
+				setShowDescription(false);
+			}, 220)
+		} else {
+			setCloseDropdown(false);
+			setShowDescription(true);
+		}
+	}
+
+	return (
+		<div onClick={handleShowDescription} className={`flex flex-col gap-5 py-9 cursor-pointer select-none ${darkMode ? 'subtitle-dark border-[#19191F] hover:text-zinc-200' : 'text-neutral-600 hover:text-black border-neutral-300'} transition-colors`}>
+			<div className={`flex items-center justify-between ${showDescription ? darkMode ? 'text-zinc-200' : 'text-black' : null}`}>
+				<h3 className="font-extralight text-4xl">{title}</h3>
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={.7} stroke="currentColor" className={`w-12 h-12 ${showDescription ? 'rotate-180' : 'rotate-0'} transition-all`}>
+					<path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75l3 3m0 0l3-3m-3 3v-7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+				</svg>
 			</div>
-		</Layout>
+			{ showDescription && (
+				<div className={`flex flex-col gap-5 ${closeDropdown ? 'dropdown-description-hide' : 'dropdown-description-show'}`}>
+					<p className={`font-light ${darkMode ? 'description-dark' : 'description-light'}`}>{description}</p>
+					<button className="btn-primary bg-primary hover:bg-primary-2 transition-colors text-white uppercase py-2 w-fit px-8 rounded-sm">Contact us</button>
+				</div>
+			)}
+		</div>
 	)
 }
 
 // Technology image of Technologies section.
-function TechnologyImage({src, alt, darkmode}) {
+function TechnologyImage({ src, alt, darkmode }) {
 	
 	const { darkMode } = useContextProvider();
 
 	return darkmode && darkMode ? (
-		<div className="opacity-[.7] hover:opacity-100 transition-opacity">
+		<div>
 			<Image src={darkmode} width={800} height={500} alt={alt} />
 		</div>
 	) : (
-		<div className="opacity-[.7] hover:opacity-100 transition-opacity">
+		<div>
 			<Image src={src} width={800} height={500} alt={alt} />
-		</div>
-	)
-}
-
-function Project({ name, description, image, side, link }) {
-	return (
-		<div className={`flex flex-col ${side === 'left' ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-5 md:gap-0`}>
-			<div className="md:w-1/2">
-				<Image className="rounded-xl shadow-md" src={image} width={3840} height={2160} alt="Railway app Image" />
-			</div>
-			<div className="md:w-1/2">
-				<div className="flex flex-col gap-2 w-fit mx-auto max-w-[80%] text-center">
-					<div className="text-2xl md:text-xl uppercase font-bold text-light-main">{name}</div>
-					<div className="">{description}</div>
-					<div className="pt-4">
-						<Link className="flex items-center justify-center gap-2 font-semibold hover:text-light-main transition-colors" href={link} target="_blank">
-							Visit
-							<i className="fa-solid fa-arrow-up-right-from-square"></i>
-						</Link>
-					</div>
-				</div>
-			</div>
 		</div>
 	)
 }
