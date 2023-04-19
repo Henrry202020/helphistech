@@ -53,7 +53,7 @@ export default function Home() {
 							<div className="flex flex-col gap-20">
 								<div className="flex flex-col gap-5 relative">
 									<div className="flex flex-col">
-										<h4 className={`uppercase font-semibold ${darkMode ? 'subtitle-dark' : 'subtitle-light'}`}>Our services</h4>
+										<span className={`uppercase font-semibold ${darkMode ? 'subtitle-dark' : 'subtitle-light'}`}>Our services</span>
 									</div>
 									<div className="flex items-start gap-20">
 										<div>
@@ -103,7 +103,7 @@ export default function Home() {
 					<div className="flex flex-col gap-20 overflow-hidden max-w-7xl mx-auto">
 						<div className="flex flex-col gap-4 text-white relative">
 							<div className="flex flex-col gap-3">
-								<h4 className={`uppercase font-semibold ${darkMode ? 'subtitle-dark' : 'subtitle-light'}`}>Our technologies</h4>
+								<span className={`uppercase font-semibold ${darkMode ? 'subtitle-dark' : 'subtitle-light'}`}>Our technologies</span>
 								<h2 className={`flex flex-col gap-5 text-5xl font-bold whitespace-nowrap ${darkMode ? 'title-dark' : 'title-light'}`}>
 									<div>These are the <span className="text-primary">Technologies</span></div> 
 									<div>we use the most</div>
@@ -143,7 +143,7 @@ export default function Home() {
 							<span>Do you have an idea?</span>
 						</div>
 						<div className="w-2/3 2xl:w-2/4 mx-auto">
-							<h2 className={`${darkMode ? 'title-dark' : 'title-light'} text-[2.25rem] sm:text-[3rem] md:text-[3.75rem] lg:text-[4.5rem] font-semibold`}>We only need an idea or a problem for us to carry out your project</h2>
+							<span className={`${darkMode ? 'title-dark' : 'title-light'} text-[2.25rem] sm:text-[3rem] md:text-[3.75rem] lg:text-[4.5rem] font-semibold`}>We only need an idea or a problem for us to carry out your project</span>
 						</div>
 					</div>
 					<div className="cursor-pointer border-b-2 border-primary text-primary hover:border-white hover:text-white transition-colors w-fit mx-auto pb-1">

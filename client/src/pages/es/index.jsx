@@ -53,7 +53,7 @@ export default function Home() {
 							<div className="flex flex-col gap-20">
 								<div className="flex flex-col gap-5 relative">
 									<div className="flex flex-col">
-										<h4 className={`uppercase font-semibold ${darkMode ? 'subtitle-dark' : 'subtitle-light'}`}>Nuestros Servicios</h4>
+										<span className={`uppercase font-semibold ${darkMode ? 'subtitle-dark' : 'subtitle-light'}`}>Nuestros Servicios</span>
 									</div>
 									<div className="flex items-start gap-20">
 										<div>
@@ -102,7 +102,7 @@ export default function Home() {
 					<div className="flex flex-col gap-20 overflow-hidden max-w-7xl mx-auto">
 						<div className="flex flex-col gap-4 text-white relative">
 							<div className="flex flex-col gap-3">
-								<h4 className={`uppercase font-semibold ${darkMode ? 'subtitle-dark' : 'subtitle-light'}`}>Nuestras tecnologías</h4>
+								<span className={`uppercase font-semibold ${darkMode ? 'subtitle-dark' : 'subtitle-light'}`}>Nuestras tecnologías</span>
 								<h2 className={`flex flex-col gap-5 text-5xl font-bold whitespace-nowrap ${darkMode ? 'title-dark' : 'title-light'}`}>
 									<div>Estas son las <span className="text-primary">Tecnologías</span></div> 
 									<div>que más usamos</div>
@@ -142,7 +142,7 @@ export default function Home() {
 							<span>Tienes una idea?</span>
 						</div>
 						<div className="w-2/3 2xl:w-2/4 mx-auto">
-							<h2 className={`${darkMode ? 'title-dark' : 'title-light'} text-[2.25rem] sm:text-[3rem] md:text-[3.75rem] lg:text-[4.5rem] font-semibold`}>Solo necesitamos una idea o un problema para que podamos llevar a cabo tu proyecto</h2>
+							<span className={`${darkMode ? 'title-dark' : 'title-light'} text-[2.25rem] sm:text-[3rem] md:text-[3.75rem] lg:text-[4.5rem] font-semibold`}>Solo necesitamos una idea o un problema para que podamos llevar a cabo tu proyecto</span>
 						</div>
 					</div>
 					<div className="cursor-pointer border-b-2 border-primary text-primary hover:border-primary-2 hover:text-primary-2 transition-colors w-fit mx-auto pb-1">
