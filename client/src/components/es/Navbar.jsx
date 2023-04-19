@@ -88,7 +88,7 @@ export default function Navbar() {
                                 </select>
                             </div>
                         </div>
-                        <Link href={"/es/cotizar-mi-proyecto"}>
+                        <Link href={"/es/contact"}>
                             <button className="btn-primary py-2 px-4 uppercase font-medium text-white bg-primary hover:bg-primary-2 transition-colors rounded-sm">
                                 <span>Contactanos</span>
                             </button>
@@ -196,7 +196,7 @@ function NavbarMobileMenu({ closeAnimation, closeMenu }) {
                                     </select>
                                 </div>
                             </div>
-                            <Link href={'/project-quote'}>
+                            <Link href={'/es/contact'}>
                                 <button className={`btn-primary py-2 px-6 bg-primary hover:bg-primary-2 text-white transition-colors`}>Contact us</button>
                             </Link>
                         </div>

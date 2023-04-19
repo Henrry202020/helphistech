@@ -19,7 +19,7 @@ export default function Layout({ title, children }) {
     return(
         <>
             <Head>
-                <title>Helphis Tech | {title}</title>
+                <title>{title} | Helphis Tech</title>
             </Head>
             <div className={`${darkMode ? 'bg-darkmode text-zinc-200' : 'bg-white text-black'} transition-colors`}>
                 {/* Navbar */}

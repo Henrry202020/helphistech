@@ -635,7 +635,7 @@ function FormComponent() {
                     </div>
                 </Section>
                 <Section 
-                    title={"Are there competitor websites that should be taken into account as references?"} 
+                    title={"¿Existen sitios web de la competencia que deban tenerse en cuenta como referencias?"} 
                 >
                     <div className="grid grid-cols-1 sm:grid-cols-2 items-center gap-2 pb-3">
                         <div onClick={() => setCompetitorWebsites(true)} className={`grid place-content-center border rounded-full py-2 px-5 hover:bg-white hover:text-black transition-colors cursor-pointer whitespace-nowrap ${competitor_websites && 'bg-white text-black'}`}>

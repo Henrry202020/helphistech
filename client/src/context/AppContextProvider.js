@@ -20,11 +20,10 @@ const AppContextProvider = ({children}) => {
         const localStorageLanguage = localStorage.getItem('language') || 'de';
         if(urlLanguage == 'de' || urlLanguage == 'en' || urlLanguage == 'es') {
             setLanguage((urlLanguage != localStorageLanguage) && urlLanguage != '' ? urlLanguage : localStorageLanguage);
-            // Use saved localStorage theme or 'light'(lightmode)
-            setDarkMode(JSON.parse(localStorage.getItem('darkmode')) || true);
         } else {
             setLanguage(localStorageLanguage);
         }
+        setDarkMode(JSON.parse(localStorage.getItem('darkmode')) == false ? false : true);
     }, []);
 
     // User Authentication
