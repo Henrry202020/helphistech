@@ -20,7 +20,7 @@ const AppContextProvider = ({children}) => {
         const localStorageLanguage = localStorage.getItem('language') || 'de';
         setLanguage((urlLanguage != localStorageLanguage) && urlLanguage != '' ? urlLanguage : localStorageLanguage);
         // Use saved localStorage theme or 'light'(lightmode)
-        setDarkMode(JSON.parse(localStorage.getItem('darkmode')) || false);
+        setDarkMode(JSON.parse(localStorage.getItem('darkmode')) || true);
     }, []);
 
     // User Authentication

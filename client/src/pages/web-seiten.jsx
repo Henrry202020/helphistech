@@ -21,7 +21,7 @@ export default function Home() {
 			</Head>
 			<main className={darkMode ? 'bg-black text-zinc-200' : 'bg-white text-black'}>
 				<div className="relative overflow-hidden" id="hero">
-					<Image className="absolute top-0 w-full h-full object-cover" src={`${darkMode ? '/home/hero/wave/dark/wave.webp' : '/home/hero/wave/light/wave.webp'}`} width={2012} height={2320} alt="" priority={true} />
+					<Image className="absolute top-0 w-full h-full object-cover" src={`${darkMode ? '/home/hero/wave/dark/wave.webp' : '/home/hero/wave/light/wave.webp'}`} fill={true} alt="" priority={true} />
 					<Navbar />
 					<section className="relative flex items-center justify-center xl:px-20 2xl:px-0 min-h-[80rem] xl:min-h-[50rem] lazy-load-1" style={{height: 'calc(100vh - 5rem)', zIndex: '1'}}>
 						<div className="max-w-7xl flex flex-col xl:flex-row items-center gap-12 w-full">
