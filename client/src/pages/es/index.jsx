@@ -18,6 +18,7 @@ export default function Home() {
 		<>
 			<Head>
 				<title>Sitio web | HelphisTech</title>
+				<meta name="description" content="Ofrecemos servicios de desarrollo web personalizados para empresas de todos los tamaños. Creamos sitios web, plataformas de comercio electrónico y aplicaciones web que se adaptan perfectamente a tus necesidades." />
 			</Head>
 			<main className={darkMode ? 'bg-black text-zinc-200' : 'bg-white text-black'}>
 				<div className={'relative overflow-hidden'} id="hero">
@@ -32,9 +33,7 @@ export default function Home() {
 								</div>
 								<div className="flex justify-center xl:justify-start">
 									<Link href={"/project-quote"}>
-										<button className="btn-primary text-white uppercase w-fit py-4 px-8 font-medium bg-primary hover:bg-primary-2 transition-colors 2xl:text-lg rounded-sm">
-											<span>Start a project with us</span>
-										</button>
+										<button className="btn-primary text-white uppercase w-fit py-4 px-8 font-medium bg-primary hover:bg-primary-2 transition-colors 2xl:text-lg rounded-sm">Start a project with us</button>
 									</Link>
 								</div>
 							</div>
@@ -86,12 +85,12 @@ export default function Home() {
 									/>
 								</div>
 								<Link className="flex justify-center" href={"#"}>
-									<button className="flex items-center gap-2 text-primary hover:text-primary-2 transition-colors">
+									<div className="flex items-center gap-2 text-primary hover:text-primary-2 hover:underline transition-colors">
 										<div>Ver más</div>
 										<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
 											<path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
 										</svg>
-									</button>
+									</div>
 								</Link>
 							</div>
 						</div>
@@ -127,12 +126,12 @@ export default function Home() {
 							</div>
 						</div>
 						<Link className="flex justify-center" href={"#"}>
-							<button className="flex items-center gap-2 text-primary hover:text-primary-2 transition-colors">
+							<div className="flex items-center gap-2 text-primary hover:text-primary-2 hover:underline transition-colors">
 								<div>Ver más</div>
 								<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
 									<path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
 								</svg>
-							</button>
+							</div>
 						</Link>
 					</div>
 				</section>
@@ -145,9 +144,9 @@ export default function Home() {
 							<span className={`${darkMode ? 'title-dark' : 'title-light'} text-[2.25rem] sm:text-[3rem] md:text-[3.75rem] lg:text-[4.5rem] font-semibold`}>Solo necesitamos una idea o un problema para que podamos llevar a cabo tu proyecto</span>
 						</div>
 					</div>
-					<div className="cursor-pointer border-b-2 border-primary text-primary hover:border-primary-2 hover:text-primary-2 transition-colors w-fit mx-auto pb-1">
-						<button className="text-2xl transition-colors font-semibold" onClick={null}>Empezar mi proyecto</button>
-					</div>
+					<Link href={'/es/contact'}>
+						<button className="text-2xl transition-colors font-semibold border-b-2 border-primary text-primary hover:border-white hover:text-white" onClick={null}>Empezar mi proyecto</button>
+					</Link>
 				</section>
 				<Footer />
 			</main>
@@ -222,12 +221,12 @@ function ServicesOption({ title, description, href }) {
 				<div className={`flex flex-col gap-5 ${closeDropdown ? 'dropdown-description-hide' : 'dropdown-description-show'}`}>
 					<p className={`font-light ${darkMode ? 'description-dark' : 'description-light'}`}>{description}</p>
 					<Link className="text-primary hover:text-primary-2 transition-colors" href={"#"}>
-						<button className="flex items-center gap-2">
+						<div className="flex items-center gap-2 hover:underline">
 							<div>Estoy interesado</div>
 							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
 								<path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
 							</svg>
-						</button>
+						</div>
 					</Link>
 				</div>
 			)}

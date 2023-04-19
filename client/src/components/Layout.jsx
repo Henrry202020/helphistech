@@ -11,7 +11,7 @@ import FooterES from "./es/Footer";
 // Hooks
 import useContextProvider from "@/hooks/useAppContextProvider";
 
-export default function Layout({ title, children }) {
+export default function Layout({ title, metaDesc, children }) {
 
     // Get functions and variables from context
     const { language, darkMode } = useContextProvider();
@@ -20,6 +20,7 @@ export default function Layout({ title, children }) {
         <>
             <Head>
                 <title>{title} | Helphis Tech</title>
+                <meta name="description" content={metaDesc} />
             </Head>
             <div className={`${darkMode ? 'bg-darkmode text-zinc-200' : 'bg-white text-black'} transition-colors`}>
                 {/* Navbar */}
