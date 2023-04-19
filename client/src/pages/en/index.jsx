@@ -221,7 +221,14 @@ function ServicesOption({ title, description, href }) {
 			{ showDescription && (
 				<div className={`flex flex-col gap-5 ${closeDropdown ? 'dropdown-description-hide' : 'dropdown-description-show'}`}>
 					<p className={`font-light ${darkMode ? 'description-dark' : 'description-light'}`}>{description}</p>
-					<button className="btn-primary bg-primary hover:bg-primary-2 transition-colors text-white uppercase py-2 w-fit px-8 rounded-sm">Contact us</button>
+					<Link className="text-primary hover:text-primary-2 transition-colors" href={"#"}>
+						<button className="flex items-center gap-2">
+							<div>I'm interested</div>
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+								<path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+							</svg>
+						</button>
+					</Link>
 				</div>
 			)}
 		</div>

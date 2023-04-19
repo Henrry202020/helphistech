@@ -71,19 +71,19 @@ export default function Home() {
 								<div className={`flex flex-col divide-y`}>
 									<ServicesOption
 										title={"Maßgeschneiderte Softwareentwicklung"}
-										description={"We specialize in creating custom websites that are designed to meet the specific needs of our clients. Our websites are responsive, user-friendly, and optimized for search engines to ensure maximum visibility."}
+										description={"Wir sind darauf spezialisiert, kundenspezifische Websites zu erstellen, die auf die spezifischen Bedürfnisse unserer Kunden zugeschnitten sind. Unsere Websites sind reaktionsschnell, benutzerfreundlich und für Suchmaschinen optimiert, um eine maximale Sichtbarkeit zu gewährleisten."}
 									/>
 									<ServicesOption
 										title={"Entwicklung von Webanwendungen"}
-										description={"We can develop complex web applications that are designed to streamline your business processes and improve efficiency. Our team has expertise in various programming languages and frameworks, including React, Angular, and Node."}
+										description={"Wir können komplexe Webanwendungen entwickeln, die darauf ausgelegt sind, Ihre Geschäftsprozesse zu rationalisieren und die Effizienz zu verbessern. Unser Team verfügt über Erfahrung in verschiedenen Programmiersprachen und Frameworks, darunter React, Angular und Node."}
 									/>
 									<ServicesOption
 										title={"E-Commerce-Webanwendungen"}
-										description={"We can create custom e-commerce platforms that are designed to help businesses sell their products and services online. Our e-commerce websites are secure, easy to use, and can integrate with popular payment gateways such as PayPal and Stripe."}
+										description={"Wir können benutzerdefinierte E-Commerce-Plattformen erstellen, die Unternehmen dabei helfen sollen, ihre Produkte und Dienstleistungen online zu verkaufen. Unsere E-Commerce-Websites sind sicher, einfach zu bedienen und können in beliebte Zahlungsgateways wie PayPal und Stripe integriert werden."}
 									/>
 									<ServicesOption
 										title={"Webanwendungs-Wartung"}
-										description={"We provide ongoing maintenance and support for all of our websites and web applications. Our team is available to troubleshoot any issues that may arise and to ensure that your website is always up-to-date and running smoothly."}
+										description={"Wir bieten laufende Wartung und Support für alle unsere Websites und Webanwendungen. Unser Team steht Ihnen zur Verfügung, um eventuell auftretende Probleme zu beheben und sicherzustellen, dass Ihre Website immer auf dem neuesten Stand ist und reibungslos funktioniert."}
 									/>
 								</div>
 								<Link className="flex justify-center" href={"#"}>
@@ -222,7 +222,14 @@ function ServicesOption({ title, description, href }) {
 			{ showDescription && (
 				<div className={`flex flex-col gap-5 ${closeDropdown ? 'dropdown-description-hide' : 'dropdown-description-show'}`}>
 					<p className={`font-light ${darkMode ? 'description-dark' : 'description-light'}`}>{description}</p>
-					<button className="btn-primary bg-primary hover:bg-primary-2 transition-colors text-white uppercase py-2 w-fit px-8 rounded-sm">Contact us</button>
+					<Link className="text-primary hover:text-primary-2 transition-colors" href={"#"}>
+						<button className="flex items-center gap-2">
+							<div>Ich bin interessiert</div>
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+								<path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+							</svg>
+						</button>
+					</Link>
 				</div>
 			)}
 		</div>
