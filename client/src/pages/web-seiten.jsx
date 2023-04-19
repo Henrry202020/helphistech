@@ -78,17 +78,17 @@ export default function Home() {
 										description={"We can develop complex web applications that are designed to streamline your business processes and improve efficiency. Our team has expertise in various programming languages and frameworks, including React, Angular, and Node."}
 									/>
 									<ServicesOption
-										title={"E-Commerce-Lösungen"}
+										title={"E-Commerce-Webanwendungen"}
 										description={"We can create custom e-commerce platforms that are designed to help businesses sell their products and services online. Our e-commerce websites are secure, easy to use, and can integrate with popular payment gateways such as PayPal and Stripe."}
 									/>
 									<ServicesOption
-										title={"Website Maintenance and Support"}
+										title={"Webanwendungs-Wartung"}
 										description={"We provide ongoing maintenance and support for all of our websites and web applications. Our team is available to troubleshoot any issues that may arise and to ensure that your website is always up-to-date and running smoothly."}
 									/>
 								</div>
 								<Link className="flex justify-center" href={"#"}>
 									<button className="flex items-center gap-2 text-primary hover:text-primary-2 transition-colors">
-										<div>See more</div>
+										<div>Mehr sehen</div>
 										<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
 											<path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
 										</svg>
@@ -103,14 +103,14 @@ export default function Home() {
 					<div className="flex flex-col gap-20 overflow-hidden">
 						<div className="flex flex-col gap-4 text-white relative">
 							<div className="flex flex-col gap-3">
-								<h4 className={`uppercase font-semibold ${darkMode ? 'subtitle-dark' : 'subtitle-light'}`}>Our technologies</h4>
+								<h4 className={`uppercase font-semibold ${darkMode ? 'subtitle-dark' : 'subtitle-light'}`}>Unsere Technologien</h4>
 								<h2 className={`flex flex-col gap-5 text-5xl font-bold whitespace-nowrap ${darkMode ? 'title-dark' : 'title-light'}`}>
-									<div>These are the <span className="text-primary">Technologies</span></div> 
-									<div>we use the most</div>
+									<div>Dies sind die <span className="text-primary">Technologien</span></div> 
+									<div>die wir am häufigsten verwenden</div>
 								</h2>
 							</div>
 							<div className={`2xl:text-lg ${darkMode ? 'description-dark font-light' : 'description-light'}`}>
-								<p>The appropriate technology enriches the project. Here are some of the ones we use the most:</p>
+								<p>Die passende Technologie bereichert das Projekt. Hier sind einige von denen, die wir am häufigsten verwenden:</p>
 							</div>
 						</div>
 						<div className="overflow-x-scroll hide-scroll">
@@ -129,7 +129,7 @@ export default function Home() {
 						</div>
 						<Link className="flex justify-center" href={"#"}>
 							<button className="flex items-center gap-2 text-primary hover:text-primary-2 transition-colors">
-								<div>See more</div>
+								<div>Mehr sehen</div>
 								<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
 									<path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
 								</svg>
@@ -140,14 +140,14 @@ export default function Home() {
 				<section className="flex flex-col gap-16 py-28 text-center lazy-load-1" id="start-my-project">
 					<div className="flex flex-col gap-8">
 						<div className={`${darkMode ? 'subtitle-dark' : 'subtitle-light'} text-lg uppercase font-semibold`}>
-							<span>Do you have an idea?</span>
+							<span>Haben sie eine Idee?</span>
 						</div>
 						<div className="w-2/3 2xl:w-2/4 mx-auto">
-							<h2 className={`${darkMode ? 'title-dark' : 'title-light'} text-[2.25rem] sm:text-[3rem] md:text-[3.75rem] lg:text-[4.5rem] font-semibold`}>We only need an idea or a problem for us to carry out your project</h2>
+							<h2 className={`${darkMode ? 'title-dark' : 'title-light'} text-[2.25rem] sm:text-[3rem] md:text-[3.75rem] lg:text-[4.5rem] font-semibold`}>Wir brauchen nur eine Idee oder ein Problem, damit wir Ihr Projekt umsetzen können</h2>
 						</div>
 					</div>
 					<div className="cursor-pointer border-b-2 border-primary text-primary hover:border-white hover:text-white transition-colors w-fit mx-auto pb-1">
-						<button className="text-2xl transition-colors font-semibold" onClick={null}>Start your project</button>
+						<button className="text-2xl transition-colors font-semibold" onClick={null}>Starten Sie Ihr Projekt</button>
 					</div>
 				</section>
 				<Footer />
