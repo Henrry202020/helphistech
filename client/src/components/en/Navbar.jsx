@@ -24,26 +24,31 @@ export default function Navbar() {
             setCloseAnimation(false);
         }, 270)
     }
-
+    
     // Get functions and variables from context
     const { darkMode, handleDarkMode, language, setLanguage } = useContextProvider();
-    
-    const router = useRouter();
 
+    const router = useRouter();
     function handleChangeLanguage(e) {
+    
         const language = e.target.value;
         setLanguage(language);
         localStorage.setItem('language', language);
-        router.push(`/${language}`)
+    
+        if(language != 'de') {
+            router.push(`/${language}`)
+        } else {
+            router.push(`/web-seiten`)
+        }
     }
 
     return(
         <>
-            <header className="flex flex-col">
+            <header className="relative flex flex-col" style={{zIndex: '1'}}>
                 <div className={`flex items-center justify-between h-20 px-10 text-${darkMode ? 'dark' : 'light'}`}>
                     <div>
                         <Link href={"/"}>
-                            <Image className="w-auto h-12" src={`/logo/${darkMode ? 'dark' : 'light'}/full-logo.webp`} width={460} height={113} alt="HelphisTech brand logo" />
+                            <Image className="w-auto h-12" src={`${darkMode ? '/logo/dark/full-logo.webp' : '/logo/light/full-logo.webp'}`} width={460} height={113} alt="HelphisTech logo" priority={true} />
                         </Link>
                     </div>
                     <nav className="hidden xl:flex items-center gap-5 font-light text-lg">
@@ -76,7 +81,7 @@ export default function Navbar() {
                         </div>
                         <div className="flex items-center gap-2">
                             <div className="text-lg">
-                                <select className="cursor-pointer bg-transparent outline-none" name="" id="" value={language} onChange={(e) => handleChangeLanguage(e.target.value)}>
+                                <select className="cursor-pointer bg-transparent outline-none" name="" id="" value={language} onChange={handleChangeLanguage}>
                                     <option value="de">DE</option>
                                     <option value="en">EN</option>
                                     <option value="es">ES</option>
@@ -122,20 +127,20 @@ export default function Navbar() {
 
 function NavbarMobileMenu({ closeAnimation, closeMenu }) {
 
+    const { darkMode, handleDarkMode, language, setLanguage } = useContextProvider();
+
     const router = useRouter();
-
-    const { darkMode, handleDarkMode, language, setLanguage, handleShowProjectQuote } = useContextProvider();
-
     function handleChangeLanguage(e) {
+    
         const language = e.target.value;
         setLanguage(language);
         localStorage.setItem('language', language);
-        router.push(`/${language}`)
-    }
-
-    function handleScrollTo(id) {
-        closeMenu();
-        document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    
+        if(language != 'de') {
+            router.push(`/${language}`)
+        } else {
+            router.push(`/web-seiten`)
+        }
     }
 
     return (

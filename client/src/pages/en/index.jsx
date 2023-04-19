@@ -20,9 +20,10 @@ export default function Home() {
 				<title>Webseiten | HelphisTech</title>
 			</Head>
 			<main className={darkMode ? 'bg-black text-zinc-200' : 'bg-white text-black'}>
-				<div className={`${darkMode ? 'bg-hero-dark' : 'bg-hero-light'}`} id="hero">
+				<div className={'relative overflow-hidden'} id="hero">
+					<Image className="absolute top-0 w-full h-full object-cover" src={`${darkMode ? '/home/hero/wave/dark/wave.webp' : '/home/hero/wave/light/wave.webp'}`} width={2012} height={2320} alt="" priority={true} />
 					<Navbar />
-					<section className="flex items-center justify-center xl:px-20 2xl:px-0 min-h-[75rem] xl:min-h-0 lazy-load-1" style={{height: 'calc(100vh - 5rem)'}}>
+					<section className="relative flex items-center justify-center xl:px-20 2xl:px-0 min-h-[80rem] xl:min-h-[50rem] lazy-load-1" style={{height: 'calc(100vh - 5rem)', zIndex: '1'}}>
 						<div className="max-w-7xl flex flex-col xl:flex-row items-center gap-12 w-full">
 							<div className="flex flex-col gap-10 text-center xl:text-left xl:max-w-[33rem] 2xl:max-w-[37rem] px-20 xl:px-0">
 								<div className={`flex flex-col gap-5`}>

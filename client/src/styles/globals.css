@@ -1,13 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap');
-/* font-family: 'Outfit', sans-serif; */
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
-/* font-family: 'Open Sans', sans-serif; */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 /* font-family: 'Poppins', sans-serif; */
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900;1000&display=swap');
-/* font-family: 'Nunito', sans-serif; */
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
-/* font-family: 'Source Sans Pro', sans-serif; */
 
 @tailwind base;
 @tailwind components;
@@ -101,10 +93,8 @@ input:-webkit-autofill:active{
     -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 
-#hero {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+select {
+	user-select: none;
 }
 
 select option {

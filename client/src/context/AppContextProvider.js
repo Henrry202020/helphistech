@@ -12,7 +12,7 @@ const AppContextProvider = ({children}) => {
 
     // Language and dark mode settings
     const [ language, setLanguage ] = useState('de');
-    const [ darkMode, setDarkMode ] = useState(false);
+    const [ darkMode, setDarkMode ] = useState(true);
     // On component load load:
     useEffect(() => {
         // Use saved localStorage language or 'de'(german)
