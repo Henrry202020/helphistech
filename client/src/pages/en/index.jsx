@@ -100,7 +100,7 @@ export default function Home() {
 				</section>
 				<section className={`relative overflow-hidden ${darkMode ? 'section-bg-dark border-[#19191F]' : 'section-bg-light border-zinc-300'} flex items-center py-28 px-20 2xl:px-0 border-t lazy-load-1`} id="our-technologies">
 					<div className="blur-shadow -top-6 -left-6"></div>
-					<div className="flex flex-col gap-20 overflow-hidden">
+					<div className="flex flex-col gap-20 overflow-hidden max-w-7xl mx-auto">
 						<div className="flex flex-col gap-4 text-white relative">
 							<div className="flex flex-col gap-3">
 								<h4 className={`uppercase font-semibold ${darkMode ? 'subtitle-dark' : 'subtitle-light'}`}>Our technologies</h4>
@@ -243,11 +243,11 @@ function TechnologyImage({ src, alt, darkmode }) {
 
 	return darkmode && darkMode ? (
 		<div>
-			<Image src={darkmode} width={800} height={500} alt={alt} />
+			<Image src={darkmode} width={166} height={104} alt={alt} />
 		</div>
 	) : (
 		<div>
-			<Image src={src} width={800} height={500} alt={alt} />
+			<Image src={src} width={166} height={104} alt={alt} />
 		</div>
 	)
 }
