@@ -1,8 +1,9 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 // Nextjs
 import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
+import { useRouter } from "next/router";
 // Context
 import useContextProvider from "@/hooks/useAppContextProvider";
 // Components
@@ -11,8 +12,16 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
 
+	const router = useRouter();
+
     // Get functions and variables from context
-	const { darkMode } = useContextProvider();
+	const { darkMode, language } = useContextProvider();
+
+	useEffect(() => {
+		if(language != 'de') {
+			router.push(`/${language}`)
+		}
+	}, [language])
 
 	return (
 		<>

@@ -47,7 +47,7 @@ export default function Navbar() {
             <header className="relative flex flex-col" style={{zIndex: '1'}}>
                 <div className={`flex items-center justify-between h-20 px-10 text-${darkMode ? 'dark' : 'light'}`}>
                     <div>
-                        <Link href={"/"}>
+                        <Link href={"/en"}>
                             <Image className="w-auto h-12" src={`${darkMode ? '/logo/dark/full-logo.webp' : '/logo/light/full-logo.webp'}`} width={460} height={113} alt="HelphisTech logo" priority={true} />
                         </Link>
                     </div>

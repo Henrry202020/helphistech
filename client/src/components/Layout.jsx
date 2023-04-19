@@ -14,8 +14,8 @@ import useContextProvider from "@/hooks/useAppContextProvider";
 export default function Layout({ title, children }) {
 
     // Get functions and variables from context
-    const { language, darkMode, showProjectQuote } = useContextProvider();
-    
+    const { language, darkMode } = useContextProvider();
+
     return(
         <>
             <Head>

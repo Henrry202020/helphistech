@@ -18,9 +18,13 @@ const AppContextProvider = ({children}) => {
         // Use saved localStorage language or 'de'(german)
         const urlLanguage = router.pathname.split('/')[1];
         const localStorageLanguage = localStorage.getItem('language') || 'de';
-        setLanguage((urlLanguage != localStorageLanguage) && urlLanguage != '' ? urlLanguage : localStorageLanguage);
-        // Use saved localStorage theme or 'light'(lightmode)
-        setDarkMode(JSON.parse(localStorage.getItem('darkmode')) || true);
+        if(urlLanguage == 'de' || urlLanguage == 'en' || urlLanguage == 'es') {
+            setLanguage((urlLanguage != localStorageLanguage) && urlLanguage != '' ? urlLanguage : localStorageLanguage);
+            // Use saved localStorage theme or 'light'(lightmode)
+            setDarkMode(JSON.parse(localStorage.getItem('darkmode')) || true);
+        } else {
+            setLanguage(localStorageLanguage);
+        }
     }, []);
 
     // User Authentication
