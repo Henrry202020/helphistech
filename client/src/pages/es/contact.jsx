@@ -136,7 +136,7 @@ function VideoCallComponent({ closeVideoCallForm }) {
                 </div>
             </div>
             <div className="flex items-center gap-2 text-white">
-                <button type={'button'} onClick={closeVideoCallForm} className={`py-2 px-4 bg-primary rounded-sm text-lg uppercase font-bold text-center cursor-pointer w-full`}>Atras</button>
+                <button type={'button'} onClick={closeVideoCallForm} className={`py-2 px-4 bg-primary rounded-sm text-lg uppercase font-bold text-center cursor-pointer w-full`}>Atrás</button>
                 <button type={'submit'} className={`py-2 px-4 bg-primary rounded-sm text-lg uppercase font-bold text-center cursor-pointer w-full`}>Enviar</button>
             </div>
         </form>
@@ -627,8 +627,8 @@ function FormComponent() {
                 </Section>
             </section>
             <div className="flex items-center gap-2  text-white">
-                <button type={'button'} onClick={handlePrevStep} className={`${step == 1 ? 'hidden' : 'block'} py-2 px-4 bg-primary rounded-sm text-lg uppercase font-bold text-center cursor-pointer w-full`}>Back</button>
-                <button type={step == 3 ? 'submit' : 'button'} onClick={handleNextStep} className={`py-2 px-4 bg-primary rounded-sm text-lg uppercase font-bold text-center cursor-pointer w-full`}>{step < 3 ? 'Next' : 'Submit'}</button>
+                <button type={'button'} onClick={handlePrevStep} className={`${step == 1 ? 'hidden' : 'block'} py-2 px-4 bg-primary rounded-sm text-lg uppercase font-bold text-center cursor-pointer w-full`}>Atrás</button>
+                <button type={step == 3 ? 'submit' : 'button'} onClick={handleNextStep} className={`py-2 px-4 bg-primary rounded-sm text-lg uppercase font-bold text-center cursor-pointer w-full`}>{step < 3 ? 'Siguiente' : 'Enviar'}</button>
             </div>
         </form>
     )
