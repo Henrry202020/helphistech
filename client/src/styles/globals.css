@@ -164,7 +164,7 @@ button.btn-primary:hover {
 }
 
 .text-gradient {
-	background: -webkit-linear-gradient(rgb(99, 165, 241), rgb(99 102 241));
+	background: -webkit-linear-gradient(rgb(134, 107, 254), rgb(90 67 190));
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }

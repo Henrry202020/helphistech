@@ -18,15 +18,15 @@ export default function ProjectQuote() {
                 <div className={`flex flex-col items-center gap-10 lg:h-full text-center w-full border-b ${darkMode ? 'border-neutral-900' : 'border-zinc-200'} pb-20 transition-colors`}>
                     <div className={`flex flex-col justify-center gap-5 w-full`}>
                         <div className={`text-6xl font-extrabold text-gradient h-fit lg:leading-[4rem] `}>
-                            <span className="w-full">Quote your project.</span>
+                            <h1 className="w-full">Quote your project.</h1>
                             {/* <br /> 
                             <span className="w-full"></span> */}
                         </div>
                         <div className={`${darkMode ? 'text-dark' : 'text-light'}`}>Thank you for your interest. Tell me about your project or idea so we can start working together!</div>
                     </div>
                     <div className="flex flex-col items-center gap-5">
-                        <div className={`text-6xl font-extrabold text-gradient h-fit lg:leading-[4rem] `}>
-                            <span className="w-full">Schedule your video call.</span>
+                        <div className={`text-5xl font-extrabold text-gradient h-fit lg:leading-[4rem] `}>
+                            <h2 className="w-full">Schedule your video call.</h2>
                             {/* <br /> 
                             <span className="w-full">Videoanruf.</span> */}
                         </div>
