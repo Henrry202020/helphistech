@@ -13,7 +13,7 @@ export default function Login() {
     return (
         <>
             <Head>
-                <title>Helphis Tech | authentifizieren</title>
+                <title>Helphis Tech | Authentifizieren</title>
             </Head>
             <div className={`${darkMode ? 'bg-neutral-900' : 'bg-white'}`}>
                 <div className="">
